@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tyke-strategy
+    username: postgres
+    password: postgres
+    platform: postgres
+  flyway:
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    clean-on-validation-error: false
+  application:
+    name: tyke-strategy-service
+
+
+server:
+  port: 8085
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    routes:
+      enabled: true

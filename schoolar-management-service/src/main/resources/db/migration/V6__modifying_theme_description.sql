@@ -1,0 +1,1 @@
+ALTER TABLE public.tema RENAME COLUMN "desc" TO description;

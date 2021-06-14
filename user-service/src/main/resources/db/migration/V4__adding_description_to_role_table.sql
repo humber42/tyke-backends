@@ -1,0 +1,1 @@
+ALTER TABLE public.role ADD description varchar(255) NULL;

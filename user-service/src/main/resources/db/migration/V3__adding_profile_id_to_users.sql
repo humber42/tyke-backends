@@ -1,0 +1,1 @@
+ALTER TABLE public."user" ADD profile_id integer NULL;
