@@ -14,14 +14,9 @@ public class AsignaturaDto {
     private Integer id;
     private String nombre;
     private Boolean activo;
-    private Collection<AsignaturaProfesorEstudianteDto> asignaturaProfesorEstudiantesById;
+    private Collection<AsignaturaProfesorGrupoDto> asignaturaProfesorGruposById;
     private Collection<AsignaturaTemaDto> asignaturaTemasById;
     private Collection<SemestreAsignaturaDto> semestreAsignaturasById;
-    private Collection<SignatureCarreraDto> signatureCarreraById;
-
-
-
-
-
+    private Collection<SignatureCarreraDto> signatureCareersById;
 
 }

@@ -10,6 +10,6 @@ import lombok.*;
 @Getter
 @Setter
 public class SignatureCareerResponse {
-    private CarreraResponseWhithoutFaculty carreradByIdCarrera;
+    private CarreraResponseWhithoutFaculty carreraByIdCareer;
     private AsignaturaResponseWithoutCollections asignaturaByIdSignature;
 }

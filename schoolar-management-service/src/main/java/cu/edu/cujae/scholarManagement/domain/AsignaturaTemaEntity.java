@@ -1,40 +1,34 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "asignatura_tema", schema = "public", catalog = "tyke-schoolar-management")
 @IdClass(AsignaturaTemaEntityPK.class)
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class AsignaturaTemaEntity implements Serializable {
-    private Integer idAsignatura;
-    private Integer idTema;
+public class AsignaturaTemaEntity {
+    private int idAsignatura;
+    private int idTema;
     private AsignaturaEntity asignaturaByIdAsignatura;
     private TemaEntity temaByIdTema;
 
-
-
     @Id
     @Column(name = "id_asignatura")
-    public Integer getIdAsignatura() {
+    public int getIdAsignatura() {
         return idAsignatura;
     }
 
-    public void setIdAsignatura(Integer idAsignatura) {
+    public void setIdAsignatura(int idAsignatura) {
         this.idAsignatura = idAsignatura;
     }
 
     @Id
     @Column(name = "id_tema")
-    public Integer getIdTema() {
+    public int getIdTema() {
         return idTema;
     }
 
-    public void setIdTema(Integer idTema) {
+    public void setIdTema(int idTema) {
         this.idTema = idTema;
     }
 
@@ -43,8 +37,8 @@ public class AsignaturaTemaEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AsignaturaTemaEntity that = (AsignaturaTemaEntity) o;
-        return Objects.equals(idAsignatura, that.idAsignatura) &&
-                Objects.equals(idTema, that.idTema);
+        return idAsignatura == that.idAsignatura &&
+                idTema == that.idTema;
     }
 
     @Override
@@ -53,7 +47,7 @@ public class AsignaturaTemaEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_asignatura", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "id_asignatura", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public AsignaturaEntity getAsignaturaByIdAsignatura() {
         return asignaturaByIdAsignatura;
     }
@@ -63,7 +57,7 @@ public class AsignaturaTemaEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_tema", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "id_tema", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public TemaEntity getTemaByIdTema() {
         return temaByIdTema;
     }

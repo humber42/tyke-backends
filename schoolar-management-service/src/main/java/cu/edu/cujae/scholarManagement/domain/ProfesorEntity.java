@@ -1,42 +1,31 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
-@EqualsAndHashCode
 @Entity
 @Table(name = "profesor", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class ProfesorEntity implements Serializable {
-    private Integer id;
+public class ProfesorEntity {
+    private int id;
     private String gradoCientifico;
     private String gradoDocente;
     private String telefono;
-    private int id_usuario;
-    private Collection<AsignaturaProfesorEstudianteEntity> asignaturaProfesorEstudiantesById;
+    private int idFacultad;
+    private Integer idUsuario;
+    private Collection<AsignaturaProfesorGrupoEntity> asignaturaProfesorGruposById;
     private FacultadEntity facultadByIdFacultad;
-
-
-
-
-
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
-
 
     @Basic
     @Column(name = "grado_cientifico")
@@ -68,29 +57,55 @@ public class ProfesorEntity implements Serializable {
         this.telefono = telefono;
     }
 
+    @Basic
+    @Column(name = "id_facultad")
+    public int getIdFacultad() {
+        return idFacultad;
+    }
 
+    public void setIdFacultad(int idFacultad) {
+        this.idFacultad = idFacultad;
+    }
 
     @Basic
-    @Column(name="id_usuario")
-    public int getId_usuario(){return id_usuario;}
-
-    public void setId_usuario(int id_usuario){
-        this.id_usuario=id_usuario;
+    @Column(name = "id_usuario")
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfesorEntity that = (ProfesorEntity) o;
+        return id == that.id &&
+                idFacultad == that.idFacultad &&
+                Objects.equals(gradoCientifico, that.gradoCientifico) &&
+                Objects.equals(gradoDocente, that.gradoDocente) &&
+                Objects.equals(telefono, that.telefono) &&
+                Objects.equals(idUsuario, that.idUsuario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, gradoCientifico, gradoDocente, telefono, idFacultad, idUsuario);
+    }
 
     @OneToMany(mappedBy = "profesorByIdProfesor")
-    public Collection<AsignaturaProfesorEstudianteEntity> getAsignaturaProfesorEstudiantesById() {
-        return asignaturaProfesorEstudiantesById;
+    public Collection<AsignaturaProfesorGrupoEntity> getAsignaturaProfesorGruposById() {
+        return asignaturaProfesorGruposById;
     }
 
-    public void setAsignaturaProfesorEstudiantesById(Collection<AsignaturaProfesorEstudianteEntity> asignaturaProfesorEstudiantesById) {
-        this.asignaturaProfesorEstudiantesById = asignaturaProfesorEstudiantesById;
+    public void setAsignaturaProfesorGruposById(Collection<AsignaturaProfesorGrupoEntity> asignaturaProfesorGruposById) {
+        this.asignaturaProfesorGruposById = asignaturaProfesorGruposById;
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_facultad", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_facultad", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public FacultadEntity getFacultadByIdFacultad() {
         return facultadByIdFacultad;
     }
@@ -98,5 +113,4 @@ public class ProfesorEntity implements Serializable {
     public void setFacultadByIdFacultad(FacultadEntity facultadByIdFacultad) {
         this.facultadByIdFacultad = facultadByIdFacultad;
     }
-
 }

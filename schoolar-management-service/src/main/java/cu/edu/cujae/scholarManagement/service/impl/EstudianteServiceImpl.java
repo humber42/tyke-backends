@@ -6,6 +6,7 @@ import cu.edu.cujae.scholarManagement.dto.UsuarioDto;
 import cu.edu.cujae.scholarManagement.feignInterface.UserInterface;
 import cu.edu.cujae.scholarManagement.repository.EstudianteRepository;
 import cu.edu.cujae.scholarManagement.service.EstudianteService;
+import cu.edu.cujae.scholarManagement.service.FacultadService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class EstudianteServiceImpl implements EstudianteService {
     @Autowired
     UserInterface getUser;
 
+    @Autowired
+    FacultadService facultyService;
+
     @Override
     public EstudianteDto deleteEstudianteById(int id) {
         EstudianteDto dto = getEstudianteById(id);
@@ -33,9 +37,10 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public List<EstudianteDto> getAllStudentsByFacultad(int idFacultad) {
+    public List<EstudianteDto> getAllStudentsByFacultad(String nameFacultad) {
+        int id = facultyService.getFacultadByFacultad(nameFacultad).getId();
         return repository.findAll()
-                .stream().filter(estudianteEntity -> estudianteEntity.getId_facultad()==idFacultad)
+                .stream().filter(estudianteEntity -> estudianteEntity.getIdFacultad()==id)
                 .map(this::mappear)
                 .collect(Collectors.toList());
     }
@@ -65,7 +70,7 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     private EstudianteDto mappear(EstudianteEntity entity){
-        UsuarioDto usuarioDto = getUser.searchById(entity.getId_usuario());
+        UsuarioDto usuarioDto = getUser.searchById(entity.getIdUsuario());
         EstudianteDto estudianteDto = mapper.map(entity, EstudianteDto.class);
         estudianteDto.setUsuario(usuarioDto);
         return estudianteDto;

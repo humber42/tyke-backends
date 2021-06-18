@@ -15,6 +15,8 @@ public class WebResourceKeyConstants {
     public static final String CHANGE_PASSWORD="/change-password";
     public static final String DELETE_USER="/delete-user";
     public static final String REGISTER="/register";
+    public static final String GET_ALL_PROFESSORS="/get-professors";
+    public static final String FETCH_USER_BY_FULLNAME="/fetch-user/fullname/{fullname}";
 
     //Role resources
     public static final String ROLE_BASE = "/role";

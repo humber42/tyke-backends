@@ -1,5 +1,6 @@
 package cu.edu.cujae.scholarManagement.api.estudiante;
 
+import cu.edu.cujae.scholarManagement.api.facultad.FacultadResponseWithoutCarreer;
 import lombok.*;
 
 @Getter
@@ -10,9 +11,6 @@ import lombok.*;
 @EqualsAndHashCode
 public class EstudianteResponseWithoutCollection {
     private Integer id;
-    private String nombre;
-    private String apellido;
-    private String sexo;
-    private String correo;
-    private int id_usuario;
+    private int idUsuario;
+    private FacultadResponseWithoutCarreer facultadByIdFacultad;
 }

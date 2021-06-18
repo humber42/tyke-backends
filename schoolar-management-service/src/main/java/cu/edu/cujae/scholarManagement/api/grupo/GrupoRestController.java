@@ -38,7 +38,7 @@ public class GrupoRestController {
 
     @PostMapping(WebResourceKeyConstants.GrupoUrls.GRUPO_SAVE)
     public GrupoResponse saveGrupo(@RequestBody GrupoRequest request){
-        return mapper.map(service.saveGrupo(mapper.map(request, GrupoDto.class)), GrupoResponse.class);
+        return mapper.map(service.saveGrupo(request), GrupoResponse.class);
     }
     @PostMapping(WebResourceKeyConstants.GrupoUrls.GRUPO_UPDATE)
     public GrupoResponse updateGrupo(@RequestBody GrupoResponse request){
@@ -53,5 +53,13 @@ public class GrupoRestController {
     @DeleteMapping(value = WebResourceKeyConstants.GrupoUrls.GRUPO_DELETE_BY_NAME,params = "name")
     public GrupoResponse deleteGrupoByName(String name){
         return mapper.map(service.deleteGrupoByName(name), GrupoResponse.class);
+    }
+
+    @GetMapping(value = WebResourceKeyConstants.GrupoUrls.GRUPO_GET_ALLS_BY_CARRERA,params = {"carrera","idProfesor"})
+    public List<GrupoResponse> getAllByCareer(@RequestParam("carrera") String carrera, @RequestParam("idProfesor") int idProfesor){
+        return service.findAllGrupoByCarrera(carrera, idProfesor)
+                .stream()
+                .map(entity->mapper.map(entity, GrupoResponse.class))
+                .collect(Collectors.toList());
     }
 }

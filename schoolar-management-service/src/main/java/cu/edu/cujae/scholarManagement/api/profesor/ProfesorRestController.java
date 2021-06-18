@@ -25,21 +25,19 @@ public class ProfesorRestController {
     }
 
 
-
     @GetMapping(value = WebResourceKeyConstants.ProfesorUrls.PROFESOR_GET_BY_ID,params = "id")
     public ProfesorResponse getProfesorById(@RequestParam int id){
         return mapper.map(service.getProfesorById(id), ProfesorResponse.class);
     }
 
-
     @PostMapping(WebResourceKeyConstants.ProfesorUrls.PROFESOR_SAVE)
     public ProfesorResponse saveProfesor(@RequestBody ProfesorRequest request){
-        return mapper.map(service.saveProfesor(mapper.map(request, ProfesorDto.class)), ProfesorResponse.class);
+        return mapper.map(service.saveProfesor(request), ProfesorResponse.class);
     }
 
     @PostMapping(WebResourceKeyConstants.ProfesorUrls.PROFESOR_UPDATE)
-    public ProfesorResponse updateProfesor(@RequestBody ProfesorResponse response){
-        return mapper.map(service.updateProfesor(mapper.map(response,ProfesorDto.class)), ProfesorResponse.class);
+    public ProfesorResponse updateProfesor(@RequestBody ProfesorRequestToUpdate requestToUpdate){
+        return mapper.map(service.updateProfesor(requestToUpdate), ProfesorResponse.class);
     }
 
     @DeleteMapping(value = WebResourceKeyConstants.ProfesorUrls.PROFESOR_DELETE_BY_ID,params = "id")

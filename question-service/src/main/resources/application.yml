@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: question-service
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/tyke-questions
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  flyway:
+    baseline-on-migrate: true
+    clean-on-validation-error: false
+    locations: classpath:db/migration
+  cloud:
+    config:
+      uri: http:://localhost:8888
+      name: config-server
+  management:
+    security:
+      enabled: true
+server:
+  port: 8082
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: '*'
+
+
+

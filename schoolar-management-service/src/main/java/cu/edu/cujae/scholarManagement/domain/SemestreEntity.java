@@ -1,17 +1,13 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "semestre", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class SemestreEntity implements Serializable {
-    private Integer id;
+public class SemestreEntity {
+    private int id;
     private String semestre;
     private Integer activo;
     private Collection<AnnoSemestreEntity> annoSemestresById;
@@ -20,11 +16,11 @@ public class SemestreEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -53,7 +49,7 @@ public class SemestreEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SemestreEntity that = (SemestreEntity) o;
-        return Objects.equals(id, that.id) &&
+        return id == that.id &&
                 Objects.equals(semestre, that.semestre) &&
                 Objects.equals(activo, that.activo);
     }

@@ -1,17 +1,13 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "anno", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class AnnoEntity implements Serializable {
-    private Integer id;
+public class AnnoEntity {
+    private int id;
     private String anno;
     private Collection<AnnoGrupoEntity> annoGruposById;
     private Collection<AnnoSemestreEntity> annoSemestresById;
@@ -21,11 +17,11 @@ public class AnnoEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,7 +40,7 @@ public class AnnoEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnoEntity that = (AnnoEntity) o;
-        return Objects.equals(id, that.id) &&
+        return id == that.id &&
                 Objects.equals(anno, that.anno);
     }
 

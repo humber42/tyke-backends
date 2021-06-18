@@ -1,62 +1,72 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
-@EqualsAndHashCode
 @Entity
 @Table(name = "estudiante", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class EstudianteEntity implements Serializable {
-    private Integer id;
-    private int id_usuario;
-    private int id_facultad;
+public class EstudianteEntity {
+    private int id;
+    private Integer idUsuario;
+    private Integer idFacultad;
     private FacultadEntity facultadByIdFacultad;
-    private Collection<AsignaturaProfesorEstudianteEntity> asignaturaProfesorEstudiantesById;
     private Collection<EstudianteGrupoEntity> estudianteGruposById;
-
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "id_usuario")
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     @Basic
-    @Column(name="id_usuario")
-    public int getId_usuario(){return id_usuario;}
-
-    public void setId_usuario(int id_usuario){
-        this.id_usuario=id_usuario;
+    @Column(name = "id_facultad")
+    public Integer getIdFacultad() {
+        return idFacultad;
     }
 
-    @Basic
-    @Column(name="id_facultad")
-    public int getId_facultad(){
-        return id_facultad;
-    }
-    public void setId_facultad(int id_facultad){
-        this.id_facultad=id_facultad;
+    public void setIdFacultad(Integer idFacultad) {
+        this.idFacultad = idFacultad;
     }
 
-    @OneToMany(mappedBy = "estudianteByIdEstudiante")
-    public Collection<AsignaturaProfesorEstudianteEntity> getAsignaturaProfesorEstudiantesById() {
-        return asignaturaProfesorEstudiantesById;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EstudianteEntity that = (EstudianteEntity) o;
+        return id == that.id &&
+                Objects.equals(idUsuario, that.idUsuario) &&
+                Objects.equals(idFacultad, that.idFacultad);
     }
 
-    public void setAsignaturaProfesorEstudiantesById(Collection<AsignaturaProfesorEstudianteEntity> asignaturaProfesorEstudiantesById) {
-        this.asignaturaProfesorEstudiantesById = asignaturaProfesorEstudiantesById;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, idUsuario, idFacultad);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_facultad", referencedColumnName = "id",updatable = false,insertable = false)
+    public FacultadEntity getFacultadByIdFacultad() {
+        return facultadByIdFacultad;
+    }
+
+    public void setFacultadByIdFacultad(FacultadEntity facultadByIdFacultad) {
+        this.facultadByIdFacultad = facultadByIdFacultad;
     }
 
     @OneToMany(mappedBy = "estudianteByIdEstudiante")
@@ -66,15 +76,5 @@ public class EstudianteEntity implements Serializable {
 
     public void setEstudianteGruposById(Collection<EstudianteGrupoEntity> estudianteGruposById) {
         this.estudianteGruposById = estudianteGruposById;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_facultad", referencedColumnName = "id",nullable = false,updatable = false,insertable = false)
-    public FacultadEntity getFacultadByIdFacultad(){
-        return facultadByIdFacultad;
-    }
-
-    public void setFacultadByIdFacultad(FacultadEntity facultadByIdFacultad){
-        this.facultadByIdFacultad=facultadByIdFacultad;
     }
 }

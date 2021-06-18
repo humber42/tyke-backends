@@ -1,38 +1,34 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "curso_anno", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-
-public class CursoAnnoEntity implements Serializable {
-    private Integer idCurso;
-    private Integer idAnno;
+@IdClass(CursoAnnoEntityPK.class)
+public class CursoAnnoEntity {
+    private int idCurso;
+    private int idAnno;
     private CursoEntity cursoByIdCurso;
     private AnnoEntity annoByIdAnno;
 
     @Id
     @Column(name = "id_curso")
-    public Integer getIdCurso() {
+    public int getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(Integer idCurso) {
+    public void setIdCurso(int idCurso) {
         this.idCurso = idCurso;
     }
 
     @Id
     @Column(name = "id_anno")
-    public Integer getIdAnno() {
+    public int getIdAnno() {
         return idAnno;
     }
 
-    public void setIdAnno(Integer idAnno) {
+    public void setIdAnno(int idAnno) {
         this.idAnno = idAnno;
     }
 
@@ -41,8 +37,8 @@ public class CursoAnnoEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CursoAnnoEntity that = (CursoAnnoEntity) o;
-        return Objects.equals(idCurso, that.idCurso) &&
-                Objects.equals(idAnno, that.idAnno);
+        return idCurso == that.idCurso &&
+                idAnno == that.idAnno;
     }
 
     @Override
@@ -51,7 +47,7 @@ public class CursoAnnoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_curso", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_curso", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public CursoEntity getCursoByIdCurso() {
         return cursoByIdCurso;
     }
@@ -61,7 +57,7 @@ public class CursoAnnoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public AnnoEntity getAnnoByIdAnno() {
         return annoByIdAnno;
     }

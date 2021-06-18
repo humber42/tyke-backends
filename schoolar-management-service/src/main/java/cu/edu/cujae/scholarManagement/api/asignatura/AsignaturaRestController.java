@@ -28,7 +28,7 @@ public class AsignaturaRestController {
 
     @PostMapping(WebResourceKeyConstants.AsignaturaUrls.ASIGNATURA_SAVE)
     public AsignaturaResponse saveAsignatura(@RequestBody AsignaturaRequest dto){
-        return mapper.map(service.saveAsignatura(AsignaturaDto.builder().nombre(dto.getNombre()).activo(dto.isActivo()).build()), AsignaturaResponse.class);
+        return mapper.map(service.saveAsignatura(dto), AsignaturaResponse.class);
     }
 
     @GetMapping(value = WebResourceKeyConstants.AsignaturaUrls.ASIGNATURA_GET_ONE_BY_NAME,params = "name")
@@ -60,4 +60,14 @@ public class AsignaturaRestController {
     public AsignaturaResponse updateAsignatura(@RequestBody AsignaturaResponse response){
         return mapper.map(service.updateAsignatura(mapper.map(response, AsignaturaDto.class)), AsignaturaResponse.class);
     }
+
+    @GetMapping(value = WebResourceKeyConstants.AsignaturaUrls.ASIGNATURA_GET_BY_CAREER_NAME,params = "career")
+    public List<AsignaturaResponse> getAllAsignaturasByCarreraName(@RequestParam("career") String carrera){
+        return service.getAllByCareers(carrera)
+                .stream()
+                .map(dto -> mapper.map(dto, AsignaturaResponse.class))
+                .collect(Collectors.toList());
+    }
+
+
 }

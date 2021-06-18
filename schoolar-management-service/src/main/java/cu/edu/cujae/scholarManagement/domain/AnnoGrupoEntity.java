@@ -1,38 +1,34 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "anno_grupo", schema = "public", catalog = "tyke-schoolar-management")
-
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class AnnoGrupoEntity implements Serializable {
-    private Integer idAnno;
-    private Integer idGrupo;
+@IdClass(AnnoGrupoEntityPK.class)
+public class AnnoGrupoEntity {
+    private int idAnno;
+    private int idGrupo;
     private AnnoEntity annoByIdAnno;
     private GrupoEntity grupoByIdGrupo;
 
     @Id
     @Column(name = "id_anno")
-    public Integer getIdAnno() {
+    public int getIdAnno() {
         return idAnno;
     }
 
-    public void setIdAnno(Integer idAnno) {
+    public void setIdAnno(int idAnno) {
         this.idAnno = idAnno;
     }
 
     @Id
     @Column(name = "id_grupo")
-    public Integer getIdGrupo() {
+    public int getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Integer idGrupo) {
+    public void setIdGrupo(int idGrupo) {
         this.idGrupo = idGrupo;
     }
 
@@ -41,8 +37,8 @@ public class AnnoGrupoEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnoGrupoEntity that = (AnnoGrupoEntity) o;
-        return Objects.equals(idAnno, that.idAnno) &&
-                Objects.equals(idGrupo, that.idGrupo);
+        return idAnno == that.idAnno &&
+                idGrupo == that.idGrupo;
     }
 
     @Override
@@ -51,7 +47,7 @@ public class AnnoGrupoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public AnnoEntity getAnnoByIdAnno() {
         return annoByIdAnno;
     }
@@ -61,7 +57,7 @@ public class AnnoGrupoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_grupo", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public GrupoEntity getGrupoByIdGrupo() {
         return grupoByIdGrupo;
     }

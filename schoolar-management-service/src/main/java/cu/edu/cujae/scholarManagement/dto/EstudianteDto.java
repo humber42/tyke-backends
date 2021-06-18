@@ -2,9 +2,7 @@ package cu.edu.cujae.scholarManagement.dto;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.Collection;
-import java.util.Objects;
 
 @Setter
 @Getter
@@ -14,14 +12,9 @@ import java.util.Objects;
 @EqualsAndHashCode
 public class EstudianteDto {
     private Integer id;
-    private int id_usuario;
+    private int idUsuario;
     private UsuarioDto usuario;
-    private int id_facultad;
+    private int idFacultad;
     private FacultadDto facultadByIdFacultad;
-    private Collection<AsignaturaProfesorEstudianteDto> asignaturaProfesorEstudiantesById;
     private Collection<EstudianteGrupoDto> estudianteGruposById;
-
-
-
-
 }

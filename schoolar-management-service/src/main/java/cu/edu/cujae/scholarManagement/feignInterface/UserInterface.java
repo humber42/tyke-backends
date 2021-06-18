@@ -14,4 +14,7 @@ public interface UserInterface {
 
     @RequestMapping(value = MicroserviceConstantsResource.UserMicroserviceConstants.FETCH_USER_BY_ID)
     UsuarioDto searchById(@PathVariable("id") int id);
+
+    @RequestMapping(value = MicroserviceConstantsResource.UserMicroserviceConstants.FETCH_USER_BY_FULLNAME)
+    UsuarioDto searchByFullname(@PathVariable("fullname")String username);
 }

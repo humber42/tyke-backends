@@ -53,12 +53,11 @@ public class EstudianteRestController {
         return mapper.map(service.deleteEstudianteById(id), EstudianteResponse.class);
     }
 
-    @GetMapping(value = WebResourceKeyConstants.EstudianteUrls.ESTUDIANTE_FETCH_ALL_BY_FACULTY,params = "idFaculty")
-    public List<EstudianteResponse> fecthAllByFaculty(@RequestParam("idFaculty") int idFaculty){
-        return service.getAllStudentsByFacultad(idFaculty)
+    @GetMapping(value = WebResourceKeyConstants.EstudianteUrls.ESTUDIANTE_FETCH_ALL_BY_FACULTY,params = "nameFaculty")
+    public List<EstudianteResponse> fecthAllByFaculty(@RequestParam("nameFaculty") String nameFaculty){
+        return service.getAllStudentsByFacultad(nameFaculty)
                 .stream()
                 .map(entity->mapper.map(entity,EstudianteResponse.class))
                 .collect(Collectors.toList());
     }
-
 }

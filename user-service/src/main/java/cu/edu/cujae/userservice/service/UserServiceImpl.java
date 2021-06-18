@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -45,7 +47,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+        Optional<User> usuario = userRepository.findById(id);
+        return usuario;
+    }
+
+    @Override
+    @Transactional
+    public User findByFullname(String fullname) {
+        return userRepository.findByFullname(fullname);
     }
 
     @Override
@@ -93,8 +102,8 @@ public class UserServiceImpl implements UserService {
             FacultadDto facultadDto = schoolarMicroservice.getFacultyByName(register.getFaculty());
             User user = findByUsername(register.getUsername());
             SaveStudent saveStudent = SaveStudent.builder()
-                    .id_facultad(facultadDto.getId())
-                    .id_usuario(user.getId().intValue())
+                    .idFacultad(facultadDto.getId())
+                    .idUsuario(user.getId().intValue())
                     .build();
             schoolarMicroservice.saveStudent(saveStudent);
         }catch (Exception e){
@@ -102,6 +111,24 @@ public class UserServiceImpl implements UserService {
             valueToReturn=false;
         }
         return valueToReturn;
+    }
+
+    @Override
+    public List<User> getAllUserWithRolProfesors(){
+        List<User> listaProfesores = new LinkedList<>();
+        for (User user:findAll()){
+            List<String>roles = user.getRoles().stream().map(Role::getRoleName).collect(Collectors.toList());
+            int i = 0;
+            boolean found = false;
+            while(i<roles.size()&&!found){
+                if(roles.get(i).equalsIgnoreCase("Profesor")){
+                    found=true;
+                    listaProfesores.add(user);
+                }
+                i++;
+            }
+        }
+        return listaProfesores;
     }
 
     @Override

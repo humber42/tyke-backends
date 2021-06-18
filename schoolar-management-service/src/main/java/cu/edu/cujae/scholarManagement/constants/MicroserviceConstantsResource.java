@@ -7,5 +7,6 @@ public class MicroserviceConstantsResource {
     public interface UserMicroserviceConstants{
         String BASE ="user-service";
         String FETCH_USER_BY_ID = "/fetch-user-by-id/{id}";
+        String FETCH_USER_BY_FULLNAME="/fetch-user/fullname/{fullname}";
     }
 }

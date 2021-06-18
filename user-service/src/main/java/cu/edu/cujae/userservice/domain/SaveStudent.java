@@ -9,6 +9,6 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class SaveStudent {
-    private int id_facultad;
-    private int id_usuario;
+    private int idFacultad;
+    private int idUsuario;
 }

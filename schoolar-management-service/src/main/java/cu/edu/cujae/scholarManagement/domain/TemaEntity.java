@@ -1,17 +1,13 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tema", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class TemaEntity implements Serializable {
-    private Integer id;
+public class TemaEntity {
+    private int id;
     private String nombre;
     private String description;
     private Collection<AsignaturaTemaEntity> asignaturaTemasById;
@@ -19,11 +15,11 @@ public class TemaEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -51,10 +47,10 @@ public class TemaEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TemaEntity that = (TemaEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(nombre, that.nombre) &&
-                Objects.equals(description, that.description);
+        TemaEntity entity = (TemaEntity) o;
+        return id == entity.id &&
+                Objects.equals(nombre, entity.nombre) &&
+                Objects.equals(description, entity.description);
     }
 
     @Override

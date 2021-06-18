@@ -1,19 +1,16 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "estudiante_grupo", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class EstudianteGrupoEntity implements Serializable {
-    private Integer idEstudiante;
-    private Integer idGrupo;
-    private Integer idCurso;
-    private Integer idAnno;
+@IdClass(EstudianteGrupoEntityPK.class)
+public class EstudianteGrupoEntity {
+    private int idEstudiante;
+    private int idGrupo;
+    private int idCurso;
+    private int idAnno;
     private EstudianteEntity estudianteByIdEstudiante;
     private GrupoEntity grupoByIdGrupo;
     private CursoEntity cursoByIdCurso;
@@ -21,41 +18,41 @@ public class EstudianteGrupoEntity implements Serializable {
 
     @Id
     @Column(name = "id_estudiante")
-    public Integer getIdEstudiante() {
+    public int getIdEstudiante() {
         return idEstudiante;
     }
 
-    public void setIdEstudiante(Integer idEstudiante) {
+    public void setIdEstudiante(int idEstudiante) {
         this.idEstudiante = idEstudiante;
     }
 
     @Id
     @Column(name = "id_grupo")
-    public Integer getIdGrupo() {
+    public int getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Integer idGrupo) {
+    public void setIdGrupo(int idGrupo) {
         this.idGrupo = idGrupo;
     }
 
     @Id
     @Column(name = "id_curso")
-    public Integer getIdCurso() {
+    public int getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(Integer idCurso) {
+    public void setIdCurso(int idCurso) {
         this.idCurso = idCurso;
     }
 
     @Id
     @Column(name = "id_anno")
-    public Integer getIdAnno() {
+    public int getIdAnno() {
         return idAnno;
     }
 
-    public void setIdAnno(Integer idAnno) {
+    public void setIdAnno(int idAnno) {
         this.idAnno = idAnno;
     }
 
@@ -64,10 +61,10 @@ public class EstudianteGrupoEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EstudianteGrupoEntity that = (EstudianteGrupoEntity) o;
-        return Objects.equals(idEstudiante, that.idEstudiante) &&
-                Objects.equals(idGrupo, that.idGrupo) &&
-                Objects.equals(idCurso, that.idCurso) &&
-                Objects.equals(idAnno, that.idAnno);
+        return idEstudiante == that.idEstudiante &&
+                idGrupo == that.idGrupo &&
+                idCurso == that.idCurso &&
+                idAnno == that.idAnno;
     }
 
     @Override
@@ -76,7 +73,7 @@ public class EstudianteGrupoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_estudiante", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_estudiante", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public EstudianteEntity getEstudianteByIdEstudiante() {
         return estudianteByIdEstudiante;
     }
@@ -86,7 +83,7 @@ public class EstudianteGrupoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_grupo", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public GrupoEntity getGrupoByIdGrupo() {
         return grupoByIdGrupo;
     }
@@ -96,7 +93,7 @@ public class EstudianteGrupoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_curso", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_curso", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public CursoEntity getCursoByIdCurso() {
         return cursoByIdCurso;
     }
@@ -106,7 +103,7 @@ public class EstudianteGrupoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public AnnoEntity getAnnoByIdAnno() {
         return annoByIdAnno;
     }

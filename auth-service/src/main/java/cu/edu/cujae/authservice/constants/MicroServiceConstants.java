@@ -6,6 +6,8 @@ public class MicroServiceConstants {
 	public static final String REGISTER_MICROSERVICE = "/user-service/api/user/register";
 	public static final String FETCH_USER_USERNAME = "/user-service/api/user/fetch-user/{username}";
 	public static final String FETCH_ALL_FACULTIES ="/schoolar-management-service/api/facultad";
+	public static final String GET_IMAGES ="/schoolar-management-service/downloadFile/{filename}";
+	
 
     public static final String USER_MICROSERVICE = "user-service";
     public static final String BASE_API = "/api/user";

@@ -10,8 +10,8 @@ import lombok.*;
 @Builder
 public class SignatureCarreraDto {
     private long id;
-    private Integer idFaculty;
+    private Integer idCareer;
     private Integer idSignature;
-    private CarreraDto carreradByIdCarrera;
+    private CarreraDto carreraByIdCareer;
     private AsignaturaDto asignaturaByIdSignature;
 }

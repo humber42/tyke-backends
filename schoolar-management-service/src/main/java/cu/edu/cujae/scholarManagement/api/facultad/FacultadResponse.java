@@ -17,5 +17,6 @@ public class FacultadResponse {
     private String siglas;
     private Collection<CarreraResponseWhithoutFaculty> carrerasById;
     private Collection<EstudianteDto> estudianteById;
+    private String imagen;
 
 }

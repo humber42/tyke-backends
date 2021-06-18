@@ -13,6 +13,6 @@ public interface EstudianteService {
     EstudianteDto saveEstudiante(EstudianteDto estudianteDto);
     EstudianteDto updateEstudiante(EstudianteDto estudianteDto);
     EstudianteDto deleteEstudianteById(int id);
-    List<EstudianteDto> getAllStudentsByFacultad(int idFacultad);
+    List<EstudianteDto> getAllStudentsByFacultad(String nameFacultad);
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static cu.edu.cujae.userservice.constants.WebResourceKeyConstants.*;
 
@@ -45,9 +46,22 @@ public class UserRestController {
         return mapper.map(userService.findByUsername(username),UserResponse.class);
     }
 
+    @GetMapping(value = GET_ALL_PROFESSORS)
+    public List<UserResponse> getUserProfessors(){
+        return userService.getAllUserWithRolProfesors()
+                .stream()
+                .map(user->mapper.map(user,UserResponse.class))
+                .collect(Collectors.toList());
+    }
+
     @PostMapping(value = CHANGE_PASSWORD)
     public int changePassword(@RequestBody UserResponse response){
         return userService.changePassword(mapper.map(response, User.class));
+    }
+
+    @GetMapping(value=FETCH_USER_BY_FULLNAME)
+    public UserResponse fetchByFullname(@PathVariable("fullname") String fullname){
+        return mapper.map(userService.findByFullname(fullname),UserResponse.class);
     }
 
     

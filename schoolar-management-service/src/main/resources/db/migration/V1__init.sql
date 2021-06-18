@@ -188,7 +188,7 @@ INSERT INTO "public"."asignatura" VALUES ('1', 'Matematica 3', 't');
 INSERT INTO "public"."asignatura" VALUES ('2', 'Matematica', 't');
 
 -- ----------------------------
--- Table structure for asignatura_profesor_estudiante
+-- Table structure for asignatura_profesor_grupo
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."asignatura_profesor_estudiante";
 CREATE TABLE "public"."asignatura_profesor_estudiante" (
@@ -201,7 +201,7 @@ WITH (OIDS=FALSE)
 ;
 
 -- ----------------------------
--- Records of asignatura_profesor_estudiante
+-- Records of asignatura_profesor_grupo
 -- ----------------------------
 
 -- ----------------------------
@@ -465,13 +465,13 @@ ALTER TABLE "public"."anno_semestre" ADD PRIMARY KEY ("id_anno", "id_semestre");
 ALTER TABLE "public"."asignatura" ADD PRIMARY KEY ("id");
 
 -- ----------------------------
--- Indexes structure for table asignatura_profesor_estudiante
+-- Indexes structure for table asignatura_profesor_grupo
 -- ----------------------------
 CREATE INDEX "refasignaturas10" ON "public"."asignatura_profesor_estudiante" USING btree (id_asignatura);
 CREATE INDEX "refprofesor14" ON "public"."asignatura_profesor_estudiante" USING btree (id_profesor);
 
 -- ----------------------------
--- Primary Key structure for table asignatura_profesor_estudiante
+-- Primary Key structure for table asignatura_profesor_grupo
 -- ----------------------------
 ALTER TABLE "public"."asignatura_profesor_estudiante" ADD PRIMARY KEY ("id_asignatura", "id_profesor", "id_estudiante");
 
@@ -554,7 +554,7 @@ ALTER TABLE "public"."anno_semestre" ADD FOREIGN KEY ("id_anno") REFERENCES "pub
 ALTER TABLE "public"."anno_semestre" ADD FOREIGN KEY ("id_semestre") REFERENCES "public"."semestre" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ----------------------------
--- Foreign Key structure for table "public"."asignatura_profesor_estudiante"
+-- Foreign Key structure for table "public"."asignatura_profesor_grupo"
 -- ----------------------------
 ALTER TABLE "public"."asignatura_profesor_estudiante" ADD FOREIGN KEY ("id_profesor") REFERENCES "public"."profesor" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "public"."asignatura_profesor_estudiante" ADD FOREIGN KEY ("id_asignatura") REFERENCES "public"."asignatura" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;

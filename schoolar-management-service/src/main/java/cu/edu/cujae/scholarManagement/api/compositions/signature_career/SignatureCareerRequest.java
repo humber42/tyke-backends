@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class SignatureCareerRequest {
-    private Integer idFaculty;
+    private Integer idCareer;
     private Integer idSignature;
 }

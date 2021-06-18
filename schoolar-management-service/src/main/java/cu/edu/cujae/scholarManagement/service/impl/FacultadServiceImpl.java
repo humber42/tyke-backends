@@ -52,7 +52,8 @@ public class FacultadServiceImpl implements FacultadService {
 
     @Override
     public FacultadDto saveFacultad(FacultadDto dto) {
-        FacultadEntity entity = mapper.map(dto,FacultadEntity.class);
+        FacultadEntity entity = mapper.map(dto,
+                FacultadEntity.class);
         return mapper.map(repository.save(entity),FacultadDto.class);
     }
 

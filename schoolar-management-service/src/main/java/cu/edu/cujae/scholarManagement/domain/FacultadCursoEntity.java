@@ -1,40 +1,34 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "facultad_curso", schema = "public", catalog = "tyke-schoolar-management")
 @IdClass(FacultadCursoEntityPK.class)
-
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class FacultadCursoEntity implements Serializable {
-    private Integer idFacultad;
-    private Integer idCurso;
+public class FacultadCursoEntity {
+    private int idFacultad;
+    private int idCurso;
     private FacultadEntity facultadByIdFacultad;
     private CursoEntity cursoByIdCurso;
 
-
     @Id
     @Column(name = "id_facultad")
-    public Integer getIdFacultad() {
+    public int getIdFacultad() {
         return idFacultad;
     }
 
-    public void setIdFacultad(Integer idFacultad) {
+    public void setIdFacultad(int idFacultad) {
         this.idFacultad = idFacultad;
     }
 
     @Id
     @Column(name = "id_curso")
-    public Integer getIdCurso() {
+    public int getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(Integer idCurso) {
+    public void setIdCurso(int idCurso) {
         this.idCurso = idCurso;
     }
 
@@ -43,8 +37,8 @@ public class FacultadCursoEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FacultadCursoEntity that = (FacultadCursoEntity) o;
-        return Objects.equals(idFacultad, that.idFacultad) &&
-                Objects.equals(idCurso, that.idCurso);
+        return idFacultad == that.idFacultad &&
+                idCurso == that.idCurso;
     }
 
     @Override
@@ -53,7 +47,7 @@ public class FacultadCursoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_facultad", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "id_facultad", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public FacultadEntity getFacultadByIdFacultad() {
         return facultadByIdFacultad;
     }
@@ -63,7 +57,7 @@ public class FacultadCursoEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_curso", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "id_curso", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public CursoEntity getCursoByIdCurso() {
         return cursoByIdCurso;
     }

@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(MicroServiceConstants.LOGIN_MICROSERVICE,MicroServiceConstants.REGISTER_MICROSERVICE,MicroServiceConstants.FETCH_USER_USERNAME,MicroServiceConstants.FETCH_ALL_FACULTIES).permitAll()
+                .antMatchers(MicroServiceConstants.LOGIN_MICROSERVICE,MicroServiceConstants.REGISTER_MICROSERVICE,MicroServiceConstants.FETCH_USER_USERNAME,MicroServiceConstants.FETCH_ALL_FACULTIES,MicroServiceConstants.GET_IMAGES).permitAll()
 				
 //                .antMatchers("/admin-service/api/sayHello/smriti").hasRole("ADMIN")
                 .anyRequest().authenticated()

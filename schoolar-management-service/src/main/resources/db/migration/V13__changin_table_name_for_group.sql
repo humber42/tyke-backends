@@ -1,0 +1,1 @@
+alter table asignatura_profesor_estudiante rename to asignatura_profesor_grupo

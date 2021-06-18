@@ -15,6 +15,7 @@ public interface UserRepository {
     User findByUsername(String name);
     int save(User user);
     int update(User user);
+    User findByFullname(String fullname);
     int changePassword(User user);
     int deleteById(Long id);
     List<User> findAll();

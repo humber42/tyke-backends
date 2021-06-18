@@ -1,5 +1,6 @@
 package cu.edu.cujae.scholarManagement.dto;
 
+import cu.edu.cujae.scholarManagement.domain.AsignaturaProfesorGrupoEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,9 @@ public class GrupoDto {
     private String grupo;
     private Collection<AnnoGrupoDto> annoGruposById;
     private Collection<EstudianteGrupoDto> estudianteGruposById;
+    private Collection<AsignaturaProfesorGrupoDto> asignaturaProfesorGruposById;
+    private Integer idCarrera;
+    private CarreraDto carreraByIdCarrera;
 
 
 }

@@ -88,12 +88,13 @@ public class CarreraRestController {
         FacultadDto dto = facultadService.getFacultadByFacultad(request.getFacultad());
         CarreraDto carreraDto = service.saveCarrera(
                 CarreraDto.builder()
-                        .facultadByIdFacultad(dto)
                         .nombre(request.getNombre())
+                        .idFacultad(dto.getId())
                         .siglas(request.getSiglas()).build());
 
-        CarreraResponse response = mapper.map(carreraDto,CarreraResponse.class);
-        response.setFacultad(mapper.map(carreraDto.getFacultadByIdFacultad(),FacultadResponseWithoutCarreer.class));
+        CarreraResponse response = mapper.map(carreraDto, CarreraResponse.class);
+        response.setFacultad(mapper.map(facultadService.getFacultadById(dto.getId()), FacultadResponseWithoutCarreer.class));
+
         return response;
     }
 

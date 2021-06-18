@@ -15,5 +15,7 @@ public class CarreraDto {
     private String nombre;
     private String siglas;
     private FacultadDto facultadByIdFacultad;
-    private Collection<SignatureCarreraDto> signatureFacultiesById;
+    private Integer idFacultad;
+    private Collection<SignatureCarreraDto> signatureCareersById;
+    private Collection<GrupoDto> gruposById;
 }

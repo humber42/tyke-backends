@@ -2,9 +2,7 @@ package cu.edu.cujae.scholarManagement.dto;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.Collection;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -17,9 +15,10 @@ public class ProfesorDto {
     private String gradoCientifico;
     private String gradoDocente;
     private String telefono;
-    private int id_usuario;
+    private int idFacultad;
+    private Integer idUsuario;
     private UsuarioDto usuario;
-    private Collection<AsignaturaProfesorEstudianteDto> asignaturaProfesorEstudiantesById;
+    private Collection<AsignaturaProfesorGrupoDto> asignaturaProfesorGruposById;
     private FacultadDto facultadByIdFacultad;
 
 }

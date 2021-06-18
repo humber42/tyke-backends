@@ -17,6 +17,8 @@ public interface UserService {
 
     public Optional<User> findById(Long id);
 
+    public User findByFullname(String fullname);
+
     public User findByUsername(String username);
 
     public int save(UserRequest user);
@@ -32,4 +34,5 @@ public interface UserService {
     public boolean saveStudentInsideSchool(UserRegister register);
 
     public List<User> findByAttribute(String username, String full_name, String email);
+    List<User> getAllUserWithRolProfesors();
 }

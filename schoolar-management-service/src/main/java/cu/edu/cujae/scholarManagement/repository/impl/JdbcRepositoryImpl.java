@@ -1,5 +1,6 @@
 package cu.edu.cujae.scholarManagement.repository.impl;
 
+import cu.edu.cujae.scholarManagement.api.profesor.ProfesorRequestToUpdate;
 import cu.edu.cujae.scholarManagement.dto.*;
 import cu.edu.cujae.scholarManagement.repository.JdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +37,14 @@ public class JdbcRepositoryImpl implements JdbcRepository {
     }
 
     @Override
-    public int saveAsignaturaProfesorEstudiante(AsignaturaProfesorEstudianteDto dto) {
+    public int saveAsignaturaProfesorGrupo(AsignaturaProfesorGrupoDto dto) {
         MapSqlParameterSource source = new MapSqlParameterSource();
         source.addValue("id_asignatura",dto.getIdAsignatura());
         source.addValue("id_profesor",dto.getIdProfesor());
-        source.addValue("id_estudiante",dto.getIdEstudiante());
+        source.addValue("id_grupo",dto.getIdGrupo());
         return template.update(
-                "INSERT INTO \"asignatura_profesor_estudiante\"(id_asignatura, id_profesor, id_estudiante)"+
-                        "VALUES(:id_asignatura,:id_profesor,:id_estudiante)"
+                "INSERT INTO \"asignatura_profesor_grupo\"(id_asignatura, id_profesor, id_grupo)"+
+                        "VALUES(:id_asignatura,:id_profesor,:id_grupo)"
                 ,source);
     }
 
@@ -106,11 +107,11 @@ public class JdbcRepositoryImpl implements JdbcRepository {
     @Override
     public int saveSignatureFaculty(SignatureCarreraDto dto) {
         MapSqlParameterSource source = new MapSqlParameterSource();
-        source.addValue("id_faculty",dto.getIdFaculty());
+        source.addValue("id_career",dto.getIdCareer());
         source.addValue("id_signature",dto.getIdSignature());
         return template.update(
-                "INSERT INTO \"signature_faculty\"(id_faculty, id_signature)" +
-                        "VALUES (:id_faculty,:id_signature)"
+                "INSERT INTO \"signature_career\"(id_career, id_signature)" +
+                        "VALUES (:id_career,:id_signature)"
                 ,source);
 
     }
@@ -124,4 +125,17 @@ public class JdbcRepositoryImpl implements JdbcRepository {
                         "where id = :id",source);
     }
 
+    @Override
+    public int updateProfesor(ProfesorRequestToUpdate profesorToUpdate,int facultad) {
+        MapSqlParameterSource source = new MapSqlParameterSource();
+        source.addValue("grado_cientifico",profesorToUpdate.getGradoCientifico());
+        source.addValue("id",profesorToUpdate.getId());
+        source.addValue("grado_docente",profesorToUpdate.getGradoDocente());
+        source.addValue("telefono",profesorToUpdate.getTelefono());
+        source.addValue("id_facultad",facultad);
+        return template.update(
+                "UPDATE profesor SET grado_cientifico=:grado_cientifico, grado_docente=:grado_docente, telefono=:telefono, id_facultad=:id_facultad" +
+                        " WHERE id=:id"
+                ,source);
+    }
 }

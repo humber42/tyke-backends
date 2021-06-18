@@ -8,6 +8,7 @@ import lombok.*;
 @Builder
 @Data
 public class UsuarioDto {
+    Long id;
     String username;
     String email;
     String fullname;

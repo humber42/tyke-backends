@@ -19,8 +19,5 @@ public class FacultadDto {
     private Collection<FacultadCursoDto> facultadCursosById;
     private Collection<ProfesorDto> profesorsById;
     private Collection<EstudianteDto> estudianteById;
-
-
-
-
+    private String imagen;
 }

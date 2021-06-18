@@ -20,6 +20,7 @@ public class FacultadRestController {
     @Autowired
     Mapper mapper;
 
+
     @GetMapping
     public List<FacultadResponse> findAllFaculties(){
         return service.findAllFaculties().stream().map(facultadDto -> mapper.map(facultadDto,FacultadResponse.class)).collect(Collectors.toList());
@@ -45,6 +46,7 @@ public class FacultadRestController {
         return mapper.map(service.saveFacultad(FacultadDto.builder().
                 facultad(request.getFacultad())
                 .siglas(request.getSiglas())
+                .imagen(request.getImagen())
                 .build()), FacultadResponse.class);
     }
 

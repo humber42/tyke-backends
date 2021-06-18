@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>cu.edu.cujae.questionservice.domain.BonificacionPreguntaTiempoEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.FeedbackEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.PistaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.PistaPreguntaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.PreguntaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.PreguntaRespuestaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.ProfileRespuestaPreguntaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.RespuestaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.TipoPistaEntity</class>
+        <class>cu.edu.cujae.questionservice.domain.TipoPreguntaEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/tyke-questions"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value=""/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hbm2ddl.auto" value="update"/>
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+        </properties>
+    </persistence-unit>
+</persistence>

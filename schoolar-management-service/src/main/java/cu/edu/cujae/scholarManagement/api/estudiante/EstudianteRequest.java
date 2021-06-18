@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class EstudianteRequest {
-    private int id_usuario;
-    private int id_facultad;
+    private int idUsuario;
+    private int idFacultad;
 
 }

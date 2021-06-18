@@ -8,7 +8,7 @@
     </parent>
     <groupId>cu.edu.cujae</groupId>
     <artifactId>tyke-strategy</artifactId>
-    <version>1.0 SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>tyke-strategy</name>
     <description>Backend for tyke-strategy</description>
     <properties>

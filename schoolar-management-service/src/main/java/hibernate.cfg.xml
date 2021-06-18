@@ -10,7 +10,7 @@
         <mapping class="cu.edu.cujae.scholarManagement.domain.AnnoGrupoEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.AnnoSemestreEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.AsignaturaEntity"/>
-        <mapping class="cu.edu.cujae.scholarManagement.domain.AsignaturaProfesorEstudianteEntity"/>
+        <mapping class="cu.edu.cujae.scholarManagement.domain.AsignaturaProfesorGrupoEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.AsignaturaTemaEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.CarreraEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.CursoEntity"/>
@@ -23,26 +23,8 @@
         <mapping class="cu.edu.cujae.scholarManagement.domain.ProfesorEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.SemestreEntity"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.SemestreAsignaturaEntity"/>
-        <mapping class="cu.edu.cujae.scholarManagement.domain.TemaEntity"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.AnnoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.AnnoGrupoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.AnnoSemestreDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.AsignaturaDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.AsignaturaProfesorEstudianteDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.AsignaturaTemaDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.CarreraDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.CursoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.CursoAnnoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.EstudianteDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.EstudianteGrupoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.FacultadDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.FacultadCursoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.GrupoDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.ProfesorDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.SemestreDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.SemestreAsignaturaDto"/>
-        <mapping class="cu.edu.cujae.scholarManagement.dto.TemaDto"/>
         <mapping class="cu.edu.cujae.scholarManagement.domain.SignatureCareerEntity"/>
+        <mapping class="cu.edu.cujae.scholarManagement.domain.TemaEntity"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

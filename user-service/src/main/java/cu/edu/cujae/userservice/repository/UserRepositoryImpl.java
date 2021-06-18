@@ -206,6 +206,33 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findByFullname(String fullname) {
+        try{
+        return namedParameterJdbcTemplate.queryForObject(
+                "SELECT * FROM \"user\" where fullname = :fullname",
+                new MapSqlParameterSource("fullname", fullname),
+                (rs, rowNum) ->
+                        new User(
+                                rs.getLong("id"),
+                                rs.getString("username"),
+                                rs.getString("fullname"),
+                                rs.getString("email"),
+                                findRolesByUserId(rs.getLong("id")),
+                                rs.getString("password"),
+                                rs.getDate("dob"),
+                                rs.getString("gender"),
+                                rs.getString("lang"),
+                                rs.getString("status"),
+                                rs.getInt("login_attempts"),
+                                rs.getInt("profile_id")
+                        )
+        );
+    } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
     public int changePassword(User user) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id", user.getId());

@@ -10,5 +10,6 @@ import lombok.*;
 @Builder
 public class AsignaturaRequest {
     private String nombre;
+    private String semestre;
     private boolean activo;
 }

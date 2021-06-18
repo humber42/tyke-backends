@@ -7,22 +7,23 @@ import java.util.Objects;
 @Entity
 @Table(name = "facultad", schema = "public", catalog = "tyke-schoolar-management")
 public class FacultadEntity {
-    private Integer id;
+    private int id;
     private String facultad;
     private String siglas;
     private Collection<CarreraEntity> carrerasById;
+    private Collection<EstudianteEntity> estudiantesById;
     private Collection<FacultadCursoEntity> facultadCursosById;
     private Collection<ProfesorEntity> profesorsById;
-    private Collection<EstudianteEntity> estudianteById;
+    private String imagen;
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,12 +47,18 @@ public class FacultadEntity {
         this.siglas = siglas;
     }
 
+    @Basic
+    @Column(name = "imagen")
+    public String getImagen(){return imagen;}
+
+    public void setImagen(String imagen){this.imagen = imagen;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FacultadEntity that = (FacultadEntity) o;
-        return Objects.equals(id, that.id) &&
+        return id == that.id &&
                 Objects.equals(facultad, that.facultad) &&
                 Objects.equals(siglas, that.siglas);
     }
@@ -71,6 +78,15 @@ public class FacultadEntity {
     }
 
     @OneToMany(mappedBy = "facultadByIdFacultad")
+    public Collection<EstudianteEntity> getEstudiantesById() {
+        return estudiantesById;
+    }
+
+    public void setEstudiantesById(Collection<EstudianteEntity> estudiantesById) {
+        this.estudiantesById = estudiantesById;
+    }
+
+    @OneToMany(mappedBy = "facultadByIdFacultad")
     public Collection<FacultadCursoEntity> getFacultadCursosById() {
         return facultadCursosById;
     }
@@ -86,11 +102,5 @@ public class FacultadEntity {
 
     public void setProfesorsById(Collection<ProfesorEntity> profesorsById) {
         this.profesorsById = profesorsById;
-    }
-
-    @OneToMany(mappedBy = "facultadByIdFacultad")
-    private Collection<EstudianteEntity> getEstudianteById(){return estudianteById;}
-    public void setEstudianteById(Collection<EstudianteEntity> estudianteById){
-        this.estudianteById=estudianteById;
     }
 }

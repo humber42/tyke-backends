@@ -1,0 +1,1 @@
+ALTER TABLE public.facultad ADD imagen varchar(255) NULL;

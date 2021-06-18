@@ -1,38 +1,34 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "anno_semestre", schema = "public", catalog = "tyke-schoolar-management")
-
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class AnnoSemestreEntity implements Serializable {
-    private Integer idAnno;
-    private Integer idSemestre;
+@IdClass(AnnoSemestreEntityPK.class)
+public class AnnoSemestreEntity {
+    private int idAnno;
+    private int idSemestre;
     private AnnoEntity annoByIdAnno;
     private SemestreEntity semestreByIdSemestre;
 
     @Id
     @Column(name = "id_anno")
-    public Integer getIdAnno() {
+    public int getIdAnno() {
         return idAnno;
     }
 
-    public void setIdAnno(Integer idAnno) {
+    public void setIdAnno(int idAnno) {
         this.idAnno = idAnno;
     }
 
     @Id
     @Column(name = "id_semestre")
-    public Integer getIdSemestre() {
+    public int getIdSemestre() {
         return idSemestre;
     }
 
-    public void setIdSemestre(Integer idSemestre) {
+    public void setIdSemestre(int idSemestre) {
         this.idSemestre = idSemestre;
     }
 
@@ -41,8 +37,8 @@ public class AnnoSemestreEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnoSemestreEntity that = (AnnoSemestreEntity) o;
-        return Objects.equals(idAnno, that.idAnno) &&
-                Objects.equals(idSemestre, that.idSemestre);
+        return idAnno == that.idAnno &&
+                idSemestre == that.idSemestre;
     }
 
     @Override
@@ -51,7 +47,7 @@ public class AnnoSemestreEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_anno", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public AnnoEntity getAnnoByIdAnno() {
         return annoByIdAnno;
     }
@@ -61,7 +57,7 @@ public class AnnoSemestreEntity implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_semestre", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_semestre", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
     public SemestreEntity getSemestreByIdSemestre() {
         return semestreByIdSemestre;
     }

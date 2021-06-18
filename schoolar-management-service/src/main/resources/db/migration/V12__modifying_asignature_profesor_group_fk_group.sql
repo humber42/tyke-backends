@@ -1,0 +1,5 @@
+ALTER TABLE public.asignatura_profesor_estudiante DROP CONSTRAINT asignatura_profesor_estudiante_id_estudiante_fkey;
+ALTER TABLE public.asignatura_profesor_estudiante RENAME COLUMN id_estudiante TO id_grupo;
+ALTER TABLE public.asignatura_profesor_estudiante
+ADD CONSTRAINT asignatura_profesor_estudiante_id_grupo_fkey
+FOREIGN KEY (id_grupo) REFERENCES public.grupo (id) ON DELETE CASCADE

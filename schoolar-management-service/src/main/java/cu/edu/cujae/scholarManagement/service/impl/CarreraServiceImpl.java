@@ -59,7 +59,7 @@ public class CarreraServiceImpl implements CarreraService {
 
     @Override
     public CarreraDto updateCarrera(CarreraDto carreraDto) {
-        CarreraEntity entity = repository.saveAndFlush(mapper.map(carreraDto,CarreraEntity.class));
+        CarreraEntity entity = repository.saveAndFlush(mapper.map(carreraDto, CarreraEntity.class));
         return mapper.map(entity,CarreraDto.class);
     }
 

@@ -1,6 +1,8 @@
 package cu.edu.cujae.scholarManagement.api.grupo;
 
+import cu.edu.cujae.scholarManagement.api.carrera.CarreraResponse;
 import cu.edu.cujae.scholarManagement.api.compositions.anno_grupo.AnnoGrupoResponse;
+import cu.edu.cujae.scholarManagement.api.compositions.asignatura_profesor_grupo.AsignaturaProfesorGrupoResponse;
 import cu.edu.cujae.scholarManagement.api.compositions.estudiante_grupo.EstudianteGrupoResponse;
 import cu.edu.cujae.scholarManagement.dto.AnnoGrupoDto;
 import cu.edu.cujae.scholarManagement.dto.EstudianteGrupoDto;
@@ -18,8 +20,9 @@ public class GrupoResponse {
 
     private Long id;
     private String grupo;
-
-    //TODO: Cambiar colecciones a las sencillas entidades
+    private Integer idCarrera;
+    private CarreraResponse carreraByIdCarrera;
     private Collection<AnnoGrupoResponse> annoGruposById;
     private Collection<EstudianteGrupoResponse> estudianteGruposById;
+    private Collection<AsignaturaProfesorGrupoResponse> asignaturaProfesorGruposById;
 }

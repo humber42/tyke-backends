@@ -6,26 +6,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class SemestreAsignaturaEntityPK implements Serializable {
-    private Integer idSemestre;
-    private Integer idAsignatura;
+    private int idSemestre;
+    private int idAsignatura;
 
     @Column(name = "id_semestre")
     @Id
-    public Integer getIdSemestre() {
+    public int getIdSemestre() {
         return idSemestre;
     }
 
-    public void setIdSemestre(Integer idSemestre) {
+    public void setIdSemestre(int idSemestre) {
         this.idSemestre = idSemestre;
     }
 
     @Column(name = "id_asignatura")
     @Id
-    public Integer getIdAsignatura() {
+    public int getIdAsignatura() {
         return idAsignatura;
     }
 
-    public void setIdAsignatura(Integer idAsignatura) {
+    public void setIdAsignatura(int idAsignatura) {
         this.idAsignatura = idAsignatura;
     }
 
@@ -34,8 +34,8 @@ public class SemestreAsignaturaEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SemestreAsignaturaEntityPK that = (SemestreAsignaturaEntityPK) o;
-        return Objects.equals(idSemestre, that.idSemestre) &&
-                Objects.equals(idAsignatura, that.idAsignatura);
+        return idSemestre == that.idSemestre &&
+                idAsignatura == that.idAsignatura;
     }
 
     @Override

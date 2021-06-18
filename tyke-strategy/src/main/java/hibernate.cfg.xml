@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/tyke-strategy</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.EstrategiaEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.EstrategiaGrupoEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.EstrategiaTemaEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.InsigniaEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.JugadorDesafioEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.JugadorEstrategiaEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.JugadorInsigniaEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.JugadorRegaloEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.OtorgamientoEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.PuntuacionEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.RegaloEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.RolProfesionalEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.TipoRegaloEntity"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

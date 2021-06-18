@@ -16,7 +16,7 @@ public class WebResourceKeyConstants {
     //Compositions
     public static final String ANNO_GRUPO_URL = "/api/anno-grupo";
     public static final String ANNO_SEMESTRE_URL = "/api/anno-semestre";
-    public static final String ASIGNATURA_PROFESOR_ESTUDIANTE_URL = "/api/asignatura-profesor-estudiante";
+    public static final String ASIGNATURA_PROFESOR_ESTUDIANTE_URL = "/api/asignatura-profesor-grupo";
     public static final String ASIGNATURA_TEMA_URL = "/api/asignatura-tema";
     public static final String CURSO_ANNO_URL = "/api/curso-anno";
     public static final String ESTUDIANTE_GRUPO_URL = "/api/estudiante-grupo";
@@ -32,6 +32,7 @@ public class WebResourceKeyConstants {
           String ASIGNATURA_ACTIVE ="/active";
           String ASIGNATURA_GET_BY_ID = "/id/{id}";
           String ASIGNATURA_GET_BY_NAME_PATH = "/name/{name}";
+          String ASIGNATURA_GET_BY_CAREER_NAME="/all/careers";
           
     }
 
@@ -74,12 +75,11 @@ public class WebResourceKeyConstants {
     }
 
     public interface EstudianteUrls{
-        String ESTUDIANTE_FETCH_ALL_BY_FACULTY="/id-faculty";
+        String ESTUDIANTE_FETCH_ALL_BY_FACULTY="/name-faculty";
         String ESTUDIANTE_GET_BY_ID ="/id";
         String ESTUDIANTE_SAVE = "/save";
         String ESTUDIANTE_UPDATE = "/update";
         String ESTUDIANTE_DELETE_BY_ID = "/delete/id";
-
     }
 
     public interface GrupoUrls{
@@ -89,6 +89,7 @@ public class WebResourceKeyConstants {
         String GRUPO_DELETE_BY_NAME = "/name";
         String GRUPO_SAVE = "/save";
         String GRUPO_UPDATE= "/update";
+        String GRUPO_GET_ALLS_BY_CARRERA="/all/carrera";
 
     }
     public interface ProfesorUrls{
@@ -128,8 +129,9 @@ public class WebResourceKeyConstants {
     public interface AnnoSemestreUrls{
         String ANNO_SEMESTRE_SAVE = "/save";
     }
-    public interface AsignaturaProfesorEstudianteUrls{
-        String ASIGNATURA_PROFESOR_ESTUDIANTE_SAVE = "/save";
+    public interface AsignaturaProfesorGrupoUrls {
+        String ASIGNATURA_PROFESOR_GRUPO_SAVE = "/save";
+        String ASIGNATURA_PROFESOR_LIST_GRUPO_SAVE = "/list/save";
     }
     public interface AsignaturaTemaUrls{
         String ASIGANTURA_TEMA_SAVE = "/save";

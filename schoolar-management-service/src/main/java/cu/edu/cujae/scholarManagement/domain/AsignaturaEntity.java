@@ -1,44 +1,28 @@
 package cu.edu.cujae.scholarManagement.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "asignatura", schema = "public", catalog = "tyke-schoolar-management")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class AsignaturaEntity implements Serializable {
-    private Integer id;
+public class AsignaturaEntity {
+    private int id;
     private String nombre;
-    private Boolean activo;
-    private Collection<AsignaturaProfesorEstudianteEntity> asignaturaProfesorEstudiantesById;
+    private boolean activo;
+    private Collection<AsignaturaProfesorGrupoEntity> asignaturaProfesorGruposById;
     private Collection<AsignaturaTemaEntity> asignaturaTemasById;
     private Collection<SemestreAsignaturaEntity> semestreAsignaturasById;
-    private Collection<SignatureCareerEntity> signatureCareerById;
-
-
-
-    @Basic
-    @Column(name = "activo")
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
+    private Collection<SignatureCareerEntity> signatureCareersById;
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -52,15 +36,24 @@ public class AsignaturaEntity implements Serializable {
         this.nombre = nombre;
     }
 
+    @Basic
+    @Column(name = "activo")
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AsignaturaEntity that = (AsignaturaEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(nombre, that.nombre) &&
-                Objects.equals(activo, that.activo);
+        return id == that.id &&
+                activo == that.activo &&
+                Objects.equals(nombre, that.nombre);
     }
 
     @Override
@@ -69,12 +62,12 @@ public class AsignaturaEntity implements Serializable {
     }
 
     @OneToMany(mappedBy = "asignaturaByIdAsignatura")
-    public Collection<AsignaturaProfesorEstudianteEntity> getAsignaturaProfesorEstudiantesById() {
-        return asignaturaProfesorEstudiantesById;
+    public Collection<AsignaturaProfesorGrupoEntity> getAsignaturaProfesorGruposById() {
+        return asignaturaProfesorGruposById;
     }
 
-    public void setAsignaturaProfesorEstudiantesById(Collection<AsignaturaProfesorEstudianteEntity> asignaturaProfesorEstudiantesById) {
-        this.asignaturaProfesorEstudiantesById = asignaturaProfesorEstudiantesById;
+    public void setAsignaturaProfesorGruposById(Collection<AsignaturaProfesorGrupoEntity> asignaturaProfesorGruposById) {
+        this.asignaturaProfesorGruposById = asignaturaProfesorGruposById;
     }
 
     @OneToMany(mappedBy = "asignaturaByIdAsignatura")
@@ -96,11 +89,11 @@ public class AsignaturaEntity implements Serializable {
     }
 
     @OneToMany(mappedBy = "asignaturaByIdSignature")
-    public Collection<SignatureCareerEntity> getSignatureCareerById() {
-        return signatureCareerById;
+    public Collection<SignatureCareerEntity> getSignatureCareersById() {
+        return signatureCareersById;
     }
 
-    public void setSignatureCareerById(Collection<SignatureCareerEntity> signatureCareerById) {
-        this.signatureCareerById = signatureCareerById;
+    public void setSignatureCareersById(Collection<SignatureCareerEntity> signatureCareersById) {
+        this.signatureCareersById = signatureCareersById;
     }
 }

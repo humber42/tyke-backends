@@ -9,7 +9,7 @@ public class SignatureCareerEntity {
     private long id;
     private Integer idCareer;
     private Integer idSignature;
-    private CarreraEntity carreradByIdCarrera;
+    private CarreraEntity carreraByIdCareer;
     private AsignaturaEntity asignaturaByIdSignature;
 
     @Id
@@ -59,17 +59,17 @@ public class SignatureCareerEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_career", referencedColumnName = "id",insertable = false,updatable = false)
-    public CarreraEntity getCarreraByIdCarrera() {
-        return carreradByIdCarrera;
+    @JoinColumn(name = "id_career", referencedColumnName = "id",updatable = false,insertable = false)
+    public CarreraEntity getCarreraByIdCareer() {
+        return carreraByIdCareer;
     }
 
-    public void setCarreraByIdCarrera(CarreraEntity carreradByIdCarrera) {
-        this.carreradByIdCarrera = carreradByIdCarrera;
+    public void setCarreraByIdCareer(CarreraEntity carreraByIdCareer) {
+        this.carreraByIdCareer = carreraByIdCareer;
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_signature", referencedColumnName = "id",insertable = false,updatable = false)
+    @JoinColumn(name = "id_signature", referencedColumnName = "id",updatable = false,insertable = false)
     public AsignaturaEntity getAsignaturaByIdSignature() {
         return asignaturaByIdSignature;
     }
