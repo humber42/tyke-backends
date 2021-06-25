@@ -1,32 +1,49 @@
 package cu.edu.cujae.questionservice.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "pregunta_respuesta", schema = "public", catalog = "tyke-questions")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class PreguntaRespuestaEntity implements Serializable {
-
+public class PreguntaRespuestaEntity {
     private long id;
+    private long idPregunta;
+    private long idRespuesta;
     private Boolean correcta;
+    private Long preguntaPadre;
+    private Integer orden;
     private PreguntaEntity preguntaByIdPregunta;
     private RespuestaEntity respuestaByIdRespuesta;
     private PreguntaEntity preguntaByPreguntaPadre;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "id_pregunta")
+    public long getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(long idPregunta) {
+        this.idPregunta = idPregunta;
+    }
+
+    @Basic
+    @Column(name = "id_respuesta")
+    public long getIdRespuesta() {
+        return idRespuesta;
+    }
+
+    public void setIdRespuesta(long idRespuesta) {
+        this.idRespuesta = idRespuesta;
     }
 
     @Basic
@@ -39,24 +56,42 @@ public class PreguntaRespuestaEntity implements Serializable {
         this.correcta = correcta;
     }
 
+    @Basic
+    @Column(name = "pregunta_padre")
+    public Long getPreguntaPadre() {
+        return preguntaPadre;
+    }
+
+    public void setPreguntaPadre(Long preguntaPadre) {
+        this.preguntaPadre = preguntaPadre;
+    }
+
+    @Basic
+    @Column(name = "orden")
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PreguntaRespuestaEntity that = (PreguntaRespuestaEntity) o;
-
-        if (id != that.id) return false;
-        if (correcta != null ? !correcta.equals(that.correcta) : that.correcta != null) return false;
-
-        return true;
+        return id == that.id &&
+                idPregunta == that.idPregunta &&
+                idRespuesta == that.idRespuesta &&
+                Objects.equals(correcta, that.correcta) &&
+                Objects.equals(preguntaPadre, that.preguntaPadre) &&
+                Objects.equals(orden, that.orden);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (correcta != null ? correcta.hashCode() : 0);
-        return result;
+        return Objects.hash(id, idPregunta, idRespuesta, correcta, preguntaPadre, orden);
     }
 
     @ManyToOne

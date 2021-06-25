@@ -1,20 +1,15 @@
 package cu.edu.cujae.questionservice.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "pregunta", schema = "public", catalog = "tyke-questions")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class PreguntaEntity implements Serializable {
-
+public class PreguntaEntity {
     private long id;
     private String tituloPregunta;
+    private Long idTipoPregunta;
     private Integer tiempoEnSegundos;
     private Integer cantPuntosCompletarCorrectamente;
     private String asignatura;
@@ -28,7 +23,6 @@ public class PreguntaEntity implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -45,6 +39,16 @@ public class PreguntaEntity implements Serializable {
 
     public void setTituloPregunta(String tituloPregunta) {
         this.tituloPregunta = tituloPregunta;
+    }
+
+    @Basic
+    @Column(name = "id_tipo_pregunta")
+    public Long getIdTipoPregunta() {
+        return idTipoPregunta;
+    }
+
+    public void setIdTipoPregunta(Long idTipoPregunta) {
+        this.idTipoPregunta = idTipoPregunta;
     }
 
     @Basic
@@ -81,29 +85,18 @@ public class PreguntaEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        PreguntaEntity that = (PreguntaEntity) o;
-
-        if (id != that.id) return false;
-        if (tituloPregunta != null ? !tituloPregunta.equals(that.tituloPregunta) : that.tituloPregunta != null)
-            return false;
-        if (tiempoEnSegundos != null ? !tiempoEnSegundos.equals(that.tiempoEnSegundos) : that.tiempoEnSegundos != null)
-            return false;
-        if (cantPuntosCompletarCorrectamente != null ? !cantPuntosCompletarCorrectamente.equals(that.cantPuntosCompletarCorrectamente) : that.cantPuntosCompletarCorrectamente != null)
-            return false;
-        if (asignatura != null ? !asignatura.equals(that.asignatura) : that.asignatura != null) return false;
-
-        return true;
+        PreguntaEntity entity = (PreguntaEntity) o;
+        return id == entity.id &&
+                Objects.equals(tituloPregunta, entity.tituloPregunta) &&
+                Objects.equals(idTipoPregunta, entity.idTipoPregunta) &&
+                Objects.equals(tiempoEnSegundos, entity.tiempoEnSegundos) &&
+                Objects.equals(cantPuntosCompletarCorrectamente, entity.cantPuntosCompletarCorrectamente) &&
+                Objects.equals(asignatura, entity.asignatura);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (tituloPregunta != null ? tituloPregunta.hashCode() : 0);
-        result = 31 * result + (tiempoEnSegundos != null ? tiempoEnSegundos.hashCode() : 0);
-        result = 31 * result + (cantPuntosCompletarCorrectamente != null ? cantPuntosCompletarCorrectamente.hashCode() : 0);
-        result = 31 * result + (asignatura != null ? asignatura.hashCode() : 0);
-        return result;
+        return Objects.hash(id, tituloPregunta, idTipoPregunta, tiempoEnSegundos, cantPuntosCompletarCorrectamente, asignatura);
     }
 
     @OneToMany(mappedBy = "preguntaByIdPregunta")

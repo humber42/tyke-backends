@@ -1,24 +1,18 @@
 package cu.edu.cujae.questionservice.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tipo_pregunta", schema = "public", catalog = "tyke-questions")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class TipoPreguntaEntity implements Serializable {
-
+public class TipoPreguntaEntity {
     private long id;
     private String tipo;
+    private Collection<PreguntaEntity> preguntasById;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -41,19 +35,22 @@ public class TipoPreguntaEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TipoPreguntaEntity that = (TipoPreguntaEntity) o;
-
-        if (id != that.id) return false;
-        if (tipo != null ? !tipo.equals(that.tipo) : that.tipo != null) return false;
-
-        return true;
+        return id == that.id &&
+                Objects.equals(tipo, that.tipo);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (tipo != null ? tipo.hashCode() : 0);
-        return result;
+        return Objects.hash(id, tipo);
+    }
+
+    @OneToMany(mappedBy = "tipoPreguntaByIdTipoPregunta")
+    public Collection<PreguntaEntity> getPreguntasById() {
+        return preguntasById;
+    }
+
+    public void setPreguntasById(Collection<PreguntaEntity> preguntasById) {
+        this.preguntasById = preguntasById;
     }
 }

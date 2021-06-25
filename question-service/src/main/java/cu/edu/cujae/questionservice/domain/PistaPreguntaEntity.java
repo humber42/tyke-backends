@@ -5,35 +5,14 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "pista_pregunta", schema = "public", catalog = "tyke-questions")
-@IdClass(PistaPreguntaEntityPK.class)
 public class PistaPreguntaEntity {
-
-    private PreguntaEntity preguntaByIdPregunta;
-    private PistaEntity pistaByIdPista;
     private long idPregunta;
     private long idPista;
+    private long id;
+    private PreguntaEntity preguntaByIdPregunta;
+    private PistaEntity pistaByIdPista;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pregunta", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
-    public PreguntaEntity getPreguntaByIdPregunta() {
-        return preguntaByIdPregunta;
-    }
-
-    public void setPreguntaByIdPregunta(PreguntaEntity preguntaByIdPregunta) {
-        this.preguntaByIdPregunta = preguntaByIdPregunta;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_pista", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
-    public PistaEntity getPistaByIdPista() {
-        return pistaByIdPista;
-    }
-
-    public void setPistaByIdPista(PistaEntity pistaByIdPista) {
-        this.pistaByIdPista = pistaByIdPista;
-    }
-
-    @Id
+    @Basic
     @Column(name = "id_pregunta")
     public long getIdPregunta() {
         return idPregunta;
@@ -43,7 +22,7 @@ public class PistaPreguntaEntity {
         this.idPregunta = idPregunta;
     }
 
-    @Id
+    @Basic
     @Column(name = "id_pista")
     public long getIdPista() {
         return idPista;
@@ -53,23 +32,48 @@ public class PistaPreguntaEntity {
         this.idPista = idPista;
     }
 
+    @Id
+    @Column(name = "id")
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PistaPreguntaEntity that = (PistaPreguntaEntity) o;
-
-        if (idPregunta != that.idPregunta) return false;
-        if (idPista != that.idPista) return false;
-
-        return true;
+        return idPregunta == that.idPregunta &&
+                idPista == that.idPista &&
+                id == that.id;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (idPregunta ^ (idPregunta >>> 32));
-        result = 31 * result + (int) (idPista ^ (idPista >>> 32));
-        return result;
+        return Objects.hash(idPregunta, idPista, id);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_pregunta", referencedColumnName = "id", nullable = false)
+    public PreguntaEntity getPreguntaByIdPregunta() {
+        return preguntaByIdPregunta;
+    }
+
+    public void setPreguntaByIdPregunta(PreguntaEntity preguntaByIdPregunta) {
+        this.preguntaByIdPregunta = preguntaByIdPregunta;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_pista", referencedColumnName = "id", nullable = false)
+    public PistaEntity getPistaByIdPista() {
+        return pistaByIdPista;
+    }
+
+    public void setPistaByIdPista(PistaEntity pistaByIdPista) {
+        this.pistaByIdPista = pistaByIdPista;
     }
 }

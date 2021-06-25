@@ -1,32 +1,35 @@
 package cu.edu.cujae.questionservice.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "bonificacion_pregunta_tiempo", schema = "public", catalog = "tyke-questions")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class BonificacionPreguntaTiempoEntity implements Serializable {
-
-
+public class BonificacionPreguntaTiempoEntity {
     private long id;
+    private Long idPregunta;
     private Long tiempoMenor;
     private Integer bonificacion;
     private PreguntaEntity preguntaByIdPregunta;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "id_pregunta")
+    public Long getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(Long idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
     @Basic
@@ -53,22 +56,16 @@ public class BonificacionPreguntaTiempoEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         BonificacionPreguntaTiempoEntity that = (BonificacionPreguntaTiempoEntity) o;
-
-        if (id != that.id) return false;
-        if (tiempoMenor != null ? !tiempoMenor.equals(that.tiempoMenor) : that.tiempoMenor != null) return false;
-        if (bonificacion != null ? !bonificacion.equals(that.bonificacion) : that.bonificacion != null) return false;
-
-        return true;
+        return id == that.id &&
+                Objects.equals(idPregunta, that.idPregunta) &&
+                Objects.equals(tiempoMenor, that.tiempoMenor) &&
+                Objects.equals(bonificacion, that.bonificacion);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (tiempoMenor != null ? tiempoMenor.hashCode() : 0);
-        result = 31 * result + (bonificacion != null ? bonificacion.hashCode() : 0);
-        return result;
+        return Objects.hash(id, idPregunta, tiempoMenor, bonificacion);
     }
 
     @ManyToOne

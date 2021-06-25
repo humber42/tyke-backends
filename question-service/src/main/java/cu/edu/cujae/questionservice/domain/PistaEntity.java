@@ -1,25 +1,20 @@
 package cu.edu.cujae.questionservice.domain;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "pista", schema = "public", catalog = "tyke-questions")
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class PistaEntity implements Serializable {
-
+public class PistaEntity {
     private long id;
     private String textoAyuda;
+    private int idTipoPista;
     private TipoPistaEntity tipoPistaByIdTipoPista;
+    private Collection<PistaPreguntaEntity> pistaPreguntasById;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -38,24 +33,29 @@ public class PistaEntity implements Serializable {
         this.textoAyuda = textoAyuda;
     }
 
+    @Basic
+    @Column(name = "id_tipo_pista")
+    public int getIdTipoPista() {
+        return idTipoPista;
+    }
+
+    public void setIdTipoPista(int idTipoPista) {
+        this.idTipoPista = idTipoPista;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PistaEntity that = (PistaEntity) o;
-
-        if (id != that.id) return false;
-        if (textoAyuda != null ? !textoAyuda.equals(that.textoAyuda) : that.textoAyuda != null) return false;
-
-        return true;
+        return id == that.id &&
+                idTipoPista == that.idTipoPista &&
+                Objects.equals(textoAyuda, that.textoAyuda);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (textoAyuda != null ? textoAyuda.hashCode() : 0);
-        return result;
+        return Objects.hash(id, textoAyuda, idTipoPista);
     }
 
     @ManyToOne
@@ -66,5 +66,14 @@ public class PistaEntity implements Serializable {
 
     public void setTipoPistaByIdTipoPista(TipoPistaEntity tipoPistaByIdTipoPista) {
         this.tipoPistaByIdTipoPista = tipoPistaByIdTipoPista;
+    }
+
+    @OneToMany(mappedBy = "pistaByIdPista")
+    public Collection<PistaPreguntaEntity> getPistaPreguntasById() {
+        return pistaPreguntasById;
+    }
+
+    public void setPistaPreguntasById(Collection<PistaPreguntaEntity> pistaPreguntasById) {
+        this.pistaPreguntasById = pistaPreguntasById;
     }
 }
