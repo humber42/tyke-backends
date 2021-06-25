@@ -25,10 +25,10 @@ public class PreguntaRestController {
         return service.getAllPreguntas().stream().map(this::convertir).collect(Collectors.toList());
     }
 
-    @GetMapping(value = WebResourceKeyConstants.PreguntaUrls.PREGUNTA_GET_BY_TYPE, params = "type")
-    public List<PreguntaResponse> getAllPreguntasByType(@RequestParam String type) {
-        return service.getAllPreguntasByTipo(type).stream().map(this::convertir).collect(Collectors.toList());
-    }
+//    @GetMapping(value = WebResourceKeyConstants.PreguntaUrls.PREGUNTA_GET_BY_TYPE, params = "type")
+//    public List<PreguntaResponse> getAllPreguntasByType(@RequestParam String type) {
+//        return service.getAllPreguntasByTipo(type).stream().map(this::convertir).collect(Collectors.toList());
+//    }
 
     @GetMapping(value = WebResourceKeyConstants.PreguntaUrls.PREGUNTA_GET_BY_ID, params = "id")
     public PreguntaResponse getPreguntaById(@RequestParam long id) {
@@ -48,6 +48,11 @@ public class PreguntaRestController {
     @PostMapping(WebResourceKeyConstants.PreguntaUrls.PREGUNTA_UPDATE)
     public PreguntaResponse updatePregunta(@RequestBody PreguntaResponse request) {
         return convertir(service.updatePregunta(mapper.map(request, PreguntaDto.class)));
+    }
+
+    @PostMapping(WebResourceKeyConstants.PreguntaUrls.PREGUNTA_SAVE_COMPLETE)
+    public PreguntaResponse savePreguntaWithAll(@RequestBody PreguntaRequestWithRespuestasCluesBonifications request){
+        return convertir(service.savePreguntaWithCluesAndBonifications(request));
     }
 
 

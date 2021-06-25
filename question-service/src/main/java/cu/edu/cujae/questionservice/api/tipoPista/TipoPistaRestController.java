@@ -19,32 +19,30 @@ public class TipoPistaRestController {
     Mapper mapper;
 
     @GetMapping
-    public List<TipoPistaResponse> getAllTipoPista() {
-        return service.getAllTipoPista().stream().map(this::convertir).collect(Collectors.toList());
+    public List<TipoPistaDto> getAllTipoPista() {
+        return service.getAllTipoPista();
     }
 
     @GetMapping(params = "id", value = WebResourceKeyConstants.TipoPistaUrls.TIPO_PISTA_GET_BY_ID)
-    public TipoPistaResponse getByIdTipoPista(@RequestParam long id) {
-        return service.getOneTipoPista(id).map(this::convertir).get();
+    public TipoPistaDto getByIdTipoPista(@RequestParam long id) {
+        return service.getOneTipoPista(id).get();
     }
 
     @DeleteMapping(value = WebResourceKeyConstants.TipoPistaUrls.TIPO_PISTA_DELETE_BY_ID, params = "id")
-    public TipoPistaResponse deleteTipoPista(@RequestParam long id) {
-        return convertir(service.delete(id));
+    public TipoPistaDto deleteTipoPista(@RequestParam long id) {
+        return service.delete(id);
     }
 
     @PostMapping(value = WebResourceKeyConstants.TipoPistaUrls.TIPO_PISTA_SAVE)
-    public TipoPistaResponse saveTipoPista(@RequestBody TipoPistaRequest request) {
-        return convertir(service.save(mapper.map(request, TipoPistaDto.class)));
+    public TipoPistaDto saveTipoPista(@RequestBody TipoPistaRequest request) {
+        return service.save(mapper.map(request, TipoPistaDto.class));
     }
 
     @PostMapping(value = WebResourceKeyConstants.TipoPistaUrls.TIPO_PISTA_UPDATE)
-    public TipoPistaResponse updateTipoPista(@RequestBody TipoPistaResponse request) {
-        return convertir(service.update(mapper.map(request, TipoPistaDto.class)));
+    public TipoPistaDto updateTipoPista(@RequestBody TipoPistaResponse request) {
+        return service.update(mapper.map(request, TipoPistaDto.class));
     }
 
-    private TipoPistaResponse convertir(TipoPistaDto dto) {
-        return mapper.map(dto, TipoPistaResponse.class);
-    }
+
 
 }

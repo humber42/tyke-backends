@@ -1,6 +1,10 @@
 package cu.edu.cujae.questionservice.api.respuesta;
 
+import cu.edu.cujae.questionservice.api.pregunta.PreguntaResponseWithoutCollections;
+import cu.edu.cujae.questionservice.api.profileRespuestaPregunta.ProfileRespuestaPreguntaResponse;
 import lombok.*;
+
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -8,8 +12,13 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class RespuestaResponse {
-    private Long id;
+    private long id;
     private String texto;
-    private Integer puntuación;
-
+    private Integer puntuacion;
+    private Boolean correcta;
+    private Integer orden;
+    private String textoEnlazar;
+    private Long idPregunta;
+    private Collection<ProfileRespuestaPreguntaResponse> profileRespuestaPreguntasById;
+    private PreguntaResponseWithoutCollections preguntaByIdPregunta;
 }

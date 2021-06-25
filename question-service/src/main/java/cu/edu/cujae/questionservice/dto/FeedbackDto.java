@@ -10,10 +10,10 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class FeedbackDto {
-    private Long id;
-    private String username;
+    private long id;
     private String feedback;
-    private long idPregunta;
+    private Long idPregunta;
+    private String username;
     private PreguntaDto preguntaByIdPregunta;
     private UserDto user;
 }

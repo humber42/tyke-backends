@@ -16,6 +16,7 @@ public class ProfileRespuestaPreguntaEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -82,7 +83,7 @@ public class ProfileRespuestaPreguntaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_respuesta", referencedColumnName = "id")
+    @JoinColumn(name = "id_respuesta", referencedColumnName = "id",insertable = false,updatable = false)
     public RespuestaEntity getRespuestaByIdRespuesta() {
         return respuestaByIdRespuesta;
     }
@@ -92,7 +93,7 @@ public class ProfileRespuestaPreguntaEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_pregunta", referencedColumnName = "id")
+    @JoinColumn(name = "id_pregunta", referencedColumnName = "id",insertable = false,updatable = false)
     public PreguntaEntity getPreguntaByIdPregunta() {
         return preguntaByIdPregunta;
     }

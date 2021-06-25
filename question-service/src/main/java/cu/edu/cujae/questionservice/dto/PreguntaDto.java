@@ -12,16 +12,17 @@ import java.util.Collection;
 @Builder
 @EqualsAndHashCode
 public class PreguntaDto {
-    private Long id;
+    private long id;
     private String tituloPregunta;
-    private long idTipoPregunta;
-    private AsignaturaDto asignaturaObject;
-    private String asignatura;
+    private Long idTipoPregunta;
     private Integer tiempoEnSegundos;
     private Integer cantPuntosCompletarCorrectamente;
+    private String asignatura;
     private Collection<BonificacionPreguntaTiempoDto> bonificacionPreguntaTiemposById;
     private Collection<FeedbackDto> feedbacksById;
-    private Collection<PistaPreguntaDto> pistaPreguntasById;
+    private Collection<PistaDto> pistasById;
     private TipoPreguntaDto tipoPreguntaByIdTipoPregunta;
-    private Collection<PreguntaRespuestaDto> preguntaRespuestasById;
+    private Collection<ProfileRespuestaPreguntaDto> profileRespuestaPreguntasById;
+    private Collection<RespuestaDto> respuestasById;
+    private AsignaturaDto asignaturaObject;
 }

@@ -14,20 +14,7 @@ public class JdbcRepositoryImpl implements JdbcRepository {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 
-    @Override
-    public int savePreguntaRespuesta(PreguntaRespuestaDto dto) {
-        MapSqlParameterSource source = new MapSqlParameterSource();
-        source.addValue("id_pregunta",dto.getId_pregunta());
-        source.addValue("id_respuesta",dto.getId_respuesta());
-        source.addValue("correcta",dto.isCorrecta());
-        source.addValue("pregunta_padre",dto.getPregunta_padre());
-        source.addValue("orden",dto.getOrden());
 
-        return namedParameterJdbcTemplate.update(
-                "INSERT INTO \"pregunta_respuesta\" (id_pregunta, id_respuesta, correcta, pregunta_padre, orden)"
-                + "VALUES (:id_pregunta, :id_respuesta, :correcta, :pregunta_padre, :orden)"
-                ,source);
-    }
 
     @Override
     public int saveBonificacion(BonificacionPreguntaTiempoDto dto) {
@@ -67,10 +54,14 @@ public class JdbcRepositoryImpl implements JdbcRepository {
     public int saveRespuesta(RespuestaDto dto) {
         MapSqlParameterSource source =new MapSqlParameterSource();
         source.addValue("texto",dto.getTexto());
-        source.addValue("puntuacion",dto.getPuntuación());
+        source.addValue("puntuacion",dto.getPuntuacion());
+        source.addValue("correcta",dto.getCorrecta());
+        source.addValue("orden",dto.getOrden());
+        source.addValue("texto_enlazar",dto.getTextoEnlazar());
+        source.addValue("id_pregunta",dto.getIdPregunta());
         return namedParameterJdbcTemplate.update(
-                "Insert Into \"respuesta\"(texto, puntuacion)"+
-                        "Values (:texto, :puntuacion)",source
+                "Insert Into \"respuesta\"(texto, puntuacion,correcta,orden,texto_enlazar,id_pregunta)"+
+                        "Values (:texto, :puntuacion,:correcta,:orden,:texto_enlazar,:id_pregunta)",source
         );
     }
 
@@ -88,25 +79,16 @@ public class JdbcRepositoryImpl implements JdbcRepository {
         );
     }
 
-    @Override
-    public int savePistaPregunta(PistaPreguntaDto dto) {
-        MapSqlParameterSource source = new MapSqlParameterSource();
-        source.addValue("id_pregunta",dto.getIdPregunta());
-        source.addValue("id_pista",dto.getIdPista());
-        return namedParameterJdbcTemplate.update(
-                "Insert into \"pista_pregunta\"(id_pregunta,id_pista)"+
-                        "Values (:id_pregunta,:id_pista)",source
-        );
-    }
 
     @Override
     public int savePista(PistaDto dto) {
         MapSqlParameterSource source = new MapSqlParameterSource();
         source.addValue("texto_ayuda",dto.getTextoAyuda());
         source.addValue("id_tipo_pista",dto.getIdTipoPista());
+        source.addValue("id_pregunta",dto.getIdPregunta());
         return namedParameterJdbcTemplate.update(
-                "Insert into \"pista\"(texto_ayuda,id_tipo_pista)"+
-                "Values (:texto_ayuda,:id_tipo_pista)",source);
+                "Insert into \"pista\"(texto_ayuda,id_tipo_pista,id_pregunta)"+
+                "Values (:texto_ayuda,:id_tipo_pista,:id_pregunta)",source);
     }
 
     @Override

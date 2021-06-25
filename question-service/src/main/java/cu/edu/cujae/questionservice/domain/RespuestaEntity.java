@@ -10,11 +10,16 @@ public class RespuestaEntity {
     private long id;
     private String texto;
     private Integer puntuacion;
-    private Collection<PreguntaRespuestaEntity> preguntaRespuestasById;
+    private Boolean correcta;
+    private Integer orden;
+    private String textoEnlazar;
+    private Long idPregunta;
     private Collection<ProfileRespuestaPreguntaEntity> profileRespuestaPreguntasById;
+    private PreguntaEntity preguntaByIdPregunta;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -43,6 +48,46 @@ public class RespuestaEntity {
         this.puntuacion = puntuacion;
     }
 
+    @Basic
+    @Column(name = "correcta")
+    public Boolean getCorrecta() {
+        return correcta;
+    }
+
+    public void setCorrecta(Boolean correcta) {
+        this.correcta = correcta;
+    }
+
+    @Basic
+    @Column(name = "orden")
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
+    @Basic
+    @Column(name = "texto_enlazar")
+    public String getTextoEnlazar() {
+        return textoEnlazar;
+    }
+
+    public void setTextoEnlazar(String textoEnlazar) {
+        this.textoEnlazar = textoEnlazar;
+    }
+
+    @Basic
+    @Column(name = "id_pregunta")
+    public Long getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(Long idPregunta) {
+        this.idPregunta = idPregunta;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,21 +95,16 @@ public class RespuestaEntity {
         RespuestaEntity that = (RespuestaEntity) o;
         return id == that.id &&
                 Objects.equals(texto, that.texto) &&
-                Objects.equals(puntuacion, that.puntuacion);
+                Objects.equals(puntuacion, that.puntuacion) &&
+                Objects.equals(correcta, that.correcta) &&
+                Objects.equals(orden, that.orden) &&
+                Objects.equals(textoEnlazar, that.textoEnlazar) &&
+                Objects.equals(idPregunta, that.idPregunta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, texto, puntuacion);
-    }
-
-    @OneToMany(mappedBy = "respuestaByIdRespuesta")
-    public Collection<PreguntaRespuestaEntity> getPreguntaRespuestasById() {
-        return preguntaRespuestasById;
-    }
-
-    public void setPreguntaRespuestasById(Collection<PreguntaRespuestaEntity> preguntaRespuestasById) {
-        this.preguntaRespuestasById = preguntaRespuestasById;
+        return Objects.hash(id, texto, puntuacion, correcta, orden, textoEnlazar, idPregunta);
     }
 
     @OneToMany(mappedBy = "respuestaByIdRespuesta")
@@ -74,5 +114,15 @@ public class RespuestaEntity {
 
     public void setProfileRespuestaPreguntasById(Collection<ProfileRespuestaPreguntaEntity> profileRespuestaPreguntasById) {
         this.profileRespuestaPreguntasById = profileRespuestaPreguntasById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_pregunta", referencedColumnName = "id",insertable = false,updatable = false)
+    public PreguntaEntity getPreguntaByIdPregunta() {
+        return preguntaByIdPregunta;
+    }
+
+    public void setPreguntaByIdPregunta(PreguntaEntity preguntaByIdPregunta) {
+        this.preguntaByIdPregunta = preguntaByIdPregunta;
     }
 }

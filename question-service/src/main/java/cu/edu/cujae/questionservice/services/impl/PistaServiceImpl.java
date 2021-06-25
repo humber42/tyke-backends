@@ -30,10 +30,10 @@ public class PistaServiceImpl implements PistaService {
         return repository.findAll().stream().map(pista -> mapper.map(pista, PistaDto.class)).collect(Collectors.toList());
     }
 
-    @Override
-    public List<PistaDto> getPistaByTipo(String tipo) {
-        return repository.getAllByTipoPistaByIdTipoPista_Tipo(tipo).stream().map(pista -> mapper.map(pista, PistaDto.class)).collect(Collectors.toList());
-    }
+//    @Override
+//    public List<PistaDto> getPistaByTipo(String tipo) {
+//        return repository.getAllByTipoPistaByIdTipoPista_Tipo(tipo).stream().map(pista -> mapper.map(pista, PistaDto.class)).collect(Collectors.toList());
+//    }
 
     @Override
     public Optional<PistaDto> findOnePista(long id) {

@@ -1,0 +1,1 @@
+ALTER TABLE public.respuesta ALTER COLUMN orden SET DEFAULT 0;

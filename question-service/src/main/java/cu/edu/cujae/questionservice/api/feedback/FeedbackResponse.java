@@ -11,8 +11,9 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class FeedbackResponse {
-    private Long id;
-    private UserDto user;
+    private long id;
     private String feedback;
+    private Long idPregunta;
     private PreguntaResponseWithoutCollections preguntaByIdPregunta;
+    private UserDto user;
 }

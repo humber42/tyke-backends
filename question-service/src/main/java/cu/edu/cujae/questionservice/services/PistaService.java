@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface PistaService {
 
     List<PistaDto> getAllPistas();
-    List<PistaDto> getPistaByTipo(String tipo);
+   // List<PistaDto> getPistaByTipo(String tipo);
     Optional<PistaDto> findOnePista(long id);
     int savePista(PistaDto dto);
     PistaDto updatePista(PistaDto dto);

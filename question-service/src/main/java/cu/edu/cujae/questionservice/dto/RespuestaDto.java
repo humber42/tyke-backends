@@ -11,8 +11,13 @@ import java.util.Collection;
 @Builder
 @EqualsAndHashCode
 public class RespuestaDto {
-    private Long id;
+    private long id;
     private String texto;
-    private Integer puntuación;
-    private Collection<PreguntaRespuestaDto> preguntaRespuestasById;
+    private Integer puntuacion;
+    private Boolean correcta;
+    private Integer orden;
+    private String textoEnlazar;
+    private Long idPregunta;
+    private Collection<ProfileRespuestaPreguntaDto> profileRespuestaPreguntasById;
+    private PreguntaDto preguntaByIdPregunta;
 }

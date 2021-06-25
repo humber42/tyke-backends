@@ -8,7 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class PistaRequest {
-
+    private long id;
     private String textoAyuda;
-    private long idTipoPista;
+    private int idTipoPista;
+    private Long idPregunta;
 }

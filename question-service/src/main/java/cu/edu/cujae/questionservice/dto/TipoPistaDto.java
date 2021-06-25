@@ -10,9 +10,8 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class TipoPistaDto {
-    private Long id;
+    private long id;
     private String tipo;
     private Integer puntosPista;
     private Integer puntosJuego;
-
 }

@@ -9,10 +9,10 @@ import java.util.Objects;
 public class TipoPreguntaEntity {
     private long id;
     private String tipo;
-    private Collection<PreguntaEntity> preguntasById;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -45,12 +45,4 @@ public class TipoPreguntaEntity {
         return Objects.hash(id, tipo);
     }
 
-    @OneToMany(mappedBy = "tipoPreguntaByIdTipoPregunta")
-    public Collection<PreguntaEntity> getPreguntasById() {
-        return preguntasById;
-    }
-
-    public void setPreguntasById(Collection<PreguntaEntity> preguntasById) {
-        this.preguntasById = preguntasById;
-    }
 }

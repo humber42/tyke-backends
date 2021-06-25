@@ -24,10 +24,10 @@ public class PistaRestController {
         return service.getAllPistas().stream().map(this::convertir).collect(Collectors.toList());
     }
 
-    @GetMapping(value = WebResourceKeyConstants.PistaUrls.PISTA_GET_BY_TYPE, params = "type")
-    public List<PistaResponse> getAllPïstaByType(@RequestParam String type) {
-        return service.getPistaByTipo(type).stream().map(this::convertir).collect(Collectors.toList());
-    }
+//    @GetMapping(value = WebResourceKeyConstants.PistaUrls.PISTA_GET_BY_TYPE, params = "type")
+//    public List<PistaResponse> getAllPïstaByType(@RequestParam String type) {
+//        return service.getPistaByTipo(type).stream().map(this::convertir).collect(Collectors.toList());
+//    }
 
     @GetMapping(value = WebResourceKeyConstants.PistaUrls.PISTA_GET_BY_ID, params = "id")
     public PistaResponse getPistaById(@RequestParam long id) {

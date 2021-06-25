@@ -8,10 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ProfileRespuestaPreguntaRequest {
-
-    private String username;
+    private Long idRespuesta;
+    private Long idPregunta;
     private Integer tiempoSegundos;
-    private long idRespuesta;
-    private long idPregunta;
-
+    private String username;
 }

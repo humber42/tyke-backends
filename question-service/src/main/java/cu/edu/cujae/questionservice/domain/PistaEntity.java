@@ -1,7 +1,6 @@
 package cu.edu.cujae.questionservice.domain;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -10,11 +9,13 @@ public class PistaEntity {
     private long id;
     private String textoAyuda;
     private int idTipoPista;
+    private Long idPregunta;
     private TipoPistaEntity tipoPistaByIdTipoPista;
-    private Collection<PistaPreguntaEntity> pistaPreguntasById;
+    private PreguntaEntity preguntaByIdPregunta;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -43,6 +44,16 @@ public class PistaEntity {
         this.idTipoPista = idTipoPista;
     }
 
+    @Basic
+    @Column(name = "id_pregunta")
+    public Long getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(Long idPregunta) {
+        this.idPregunta = idPregunta;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,16 +61,17 @@ public class PistaEntity {
         PistaEntity that = (PistaEntity) o;
         return id == that.id &&
                 idTipoPista == that.idTipoPista &&
-                Objects.equals(textoAyuda, that.textoAyuda);
+                Objects.equals(textoAyuda, that.textoAyuda) &&
+                Objects.equals(idPregunta, that.idPregunta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, textoAyuda, idTipoPista);
+        return Objects.hash(id, textoAyuda, idTipoPista, idPregunta);
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_pista", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_tipo_pista", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
     public TipoPistaEntity getTipoPistaByIdTipoPista() {
         return tipoPistaByIdTipoPista;
     }
@@ -68,12 +80,13 @@ public class PistaEntity {
         this.tipoPistaByIdTipoPista = tipoPistaByIdTipoPista;
     }
 
-    @OneToMany(mappedBy = "pistaByIdPista")
-    public Collection<PistaPreguntaEntity> getPistaPreguntasById() {
-        return pistaPreguntasById;
+    @ManyToOne
+    @JoinColumn(name = "id_pregunta", referencedColumnName = "id",insertable = false,updatable = false)
+    public PreguntaEntity getPreguntaByIdPregunta() {
+        return preguntaByIdPregunta;
     }
 
-    public void setPistaPreguntasById(Collection<PistaPreguntaEntity> pistaPreguntasById) {
-        this.pistaPreguntasById = pistaPreguntasById;
+    public void setPreguntaByIdPregunta(PreguntaEntity preguntaByIdPregunta) {
+        this.preguntaByIdPregunta = preguntaByIdPregunta;
     }
 }

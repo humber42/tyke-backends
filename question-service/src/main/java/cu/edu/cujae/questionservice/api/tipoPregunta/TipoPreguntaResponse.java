@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class TipoPreguntaResponse {
-    private Long id;
+    private long id;
     private String tipo;
 }

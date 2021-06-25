@@ -11,10 +11,11 @@ public class TipoPistaEntity {
     private String tipo;
     private Integer puntosPista;
     private Integer puntosJuego;
-    private Collection<PistaEntity> pistasById;
+
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -69,12 +70,4 @@ public class TipoPistaEntity {
         return Objects.hash(id, tipo, puntosPista, puntosJuego);
     }
 
-    @OneToMany(mappedBy = "tipoPistaByIdTipoPista")
-    public Collection<PistaEntity> getPistasById() {
-        return pistasById;
-    }
-
-    public void setPistasById(Collection<PistaEntity> pistasById) {
-        this.pistasById = pistasById;
-    }
 }

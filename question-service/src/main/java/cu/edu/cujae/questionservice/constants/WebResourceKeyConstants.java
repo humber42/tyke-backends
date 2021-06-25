@@ -41,6 +41,7 @@ public class WebResourceKeyConstants {
         String PREGUNTA_GET_BY_TYPE = "/type";
         String PREGUNTA_SAVE = "/save";
         String PREGUNTA_UPDATE = "/update";
+        String PREGUNTA_SAVE_COMPLETE="/save/complete";
     }
 
     public interface ProfileRespuestaPreguntaUrls {

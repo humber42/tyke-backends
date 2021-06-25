@@ -59,6 +59,11 @@ public class TipoPistaServiceImpl implements TipoPistaService {
                 ;
     }
 
+    @Override
+    public TipoPistaDto getByName(String name) {
+        return repository.findByTipo(name).map(this::mappearTipoPista).get();
+    }
+
     private TipoPistaDto mappearTipoPista(TipoPistaEntity entity) {
         return mapper.map(entity, TipoPistaDto.class);
     }

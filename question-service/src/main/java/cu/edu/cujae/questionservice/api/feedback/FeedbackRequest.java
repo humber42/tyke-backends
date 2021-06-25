@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class FeedbackRequest {
-    private String username;
     private String feedback;
-    private long idPregunta;
+    private Long idPregunta;
+    private String username;
 }

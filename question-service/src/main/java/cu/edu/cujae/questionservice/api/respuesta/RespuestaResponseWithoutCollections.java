@@ -8,8 +8,11 @@ import lombok.*;
 @Getter
 @Setter
 public class RespuestaResponseWithoutCollections {
-    private Long id;
+    private long id;
     private String texto;
-    private Integer puntuación;
-
+    private Integer puntuacion;
+    private Boolean correcta;
+    private Integer orden;
+    private String textoEnlazar;
+    private Long idPregunta;
 }

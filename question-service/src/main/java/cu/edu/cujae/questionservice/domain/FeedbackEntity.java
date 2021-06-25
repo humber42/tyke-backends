@@ -14,6 +14,7 @@ public class FeedbackEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -69,7 +70,7 @@ public class FeedbackEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_pregunta", referencedColumnName = "id")
+    @JoinColumn(name = "id_pregunta", referencedColumnName = "id",insertable = false,updatable = false)
     public PreguntaEntity getPreguntaByIdPregunta() {
         return preguntaByIdPregunta;
     }

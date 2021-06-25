@@ -11,9 +11,10 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ProfileRespuestaPreguntaResponse {
-    private Long id;
-    private UserDto userDto;
+    private long id;
     private Integer tiempoSegundos;
+    private String username;
     private RespuestaResponseWithoutCollections respuestaByIdRespuesta;
     private PreguntaResponseWithoutCollections preguntaByIdPregunta;
+    private UserDto userDto;
 }

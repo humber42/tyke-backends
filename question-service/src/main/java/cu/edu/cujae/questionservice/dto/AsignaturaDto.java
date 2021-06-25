@@ -12,4 +12,5 @@ import lombok.*;
 public class AsignaturaDto {
     private String nombre;
     private Boolean activo;
+    private int id;
 }

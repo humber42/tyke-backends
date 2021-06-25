@@ -1,0 +1,1 @@
+ALTER TABLE public.respuesta RENAME COLUMN puntuación TO puntuacion;

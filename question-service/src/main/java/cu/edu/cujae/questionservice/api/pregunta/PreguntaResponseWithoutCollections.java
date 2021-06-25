@@ -10,11 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class PreguntaResponseWithoutCollections {
-    private Long id;
+    private long id;
     private String tituloPregunta;
-    private AsignaturaDto asignaturaObject;
     private Integer tiempoEnSegundos;
     private Integer cantPuntosCompletarCorrectamente;
+    private String asignatura;
     private TipoPreguntaResponse tipoPreguntaByIdTipoPregunta;
+    private AsignaturaDto asignaturaObject;
 
 }

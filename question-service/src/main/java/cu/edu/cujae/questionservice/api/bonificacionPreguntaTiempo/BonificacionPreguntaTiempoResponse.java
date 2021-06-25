@@ -9,7 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class BonificacionPreguntaTiempoResponse {
-    private Long id;
+    private long id;
+    private Long idPregunta;
     private Long tiempoMenor;
     private Integer bonificacion;
     private PreguntaResponseWithoutCollections preguntaByIdPregunta;

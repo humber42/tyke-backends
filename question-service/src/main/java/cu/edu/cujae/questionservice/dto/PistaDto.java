@@ -11,8 +11,10 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class PistaDto {
-    private Long id;
+    private long id;
     private String textoAyuda;
-    private long idTipoPista;
+    private int idTipoPista;
+    private Long idPregunta;
     private TipoPistaDto tipoPistaByIdTipoPista;
+    private PreguntaDto preguntaByIdPregunta;
 }

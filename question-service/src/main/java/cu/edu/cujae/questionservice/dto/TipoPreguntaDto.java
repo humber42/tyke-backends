@@ -9,6 +9,6 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class TipoPreguntaDto {
-    private Long id;
+    private long id;
     private String tipo;
 }

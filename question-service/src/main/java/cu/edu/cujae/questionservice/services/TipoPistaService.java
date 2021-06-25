@@ -12,4 +12,5 @@ public interface TipoPistaService {
     TipoPistaDto save(TipoPistaDto dto);
     TipoPistaDto update(TipoPistaDto dto);
     TipoPistaDto delete(long id);
+    TipoPistaDto getByName(String name);
 }

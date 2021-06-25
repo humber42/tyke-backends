@@ -12,4 +12,5 @@ public interface TipoPreguntaService {
     TipoPreguntaDto save(TipoPreguntaDto dto);
     TipoPreguntaDto update(TipoPreguntaDto dto);
     TipoPreguntaDto delete(long id);
+    TipoPreguntaDto getByName(String tipo);
 }

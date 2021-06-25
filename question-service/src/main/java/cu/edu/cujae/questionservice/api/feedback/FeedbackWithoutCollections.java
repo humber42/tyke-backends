@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class FeedbackWithoutCollections {
-    private Long id;
-    private UserDto user;
+    private long id;
     private String feedback;
+    private UserDto user;
 }

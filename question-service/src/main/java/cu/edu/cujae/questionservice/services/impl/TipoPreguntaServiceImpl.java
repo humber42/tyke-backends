@@ -61,6 +61,11 @@ public class TipoPreguntaServiceImpl implements TipoPreguntaService {
         );
     }
 
+    @Override
+    public TipoPreguntaDto getByName(String tipo) {
+        return repository.findByTipo(tipo).map(this::mappearTipoPregunta).get();
+    }
+
     public TipoPreguntaDto mappearTipoPregunta(TipoPreguntaEntity entity) {
         return mapper.map(entity, TipoPreguntaDto.class);
     }

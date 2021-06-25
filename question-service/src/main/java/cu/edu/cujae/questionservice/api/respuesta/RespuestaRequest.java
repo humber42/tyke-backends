@@ -9,6 +9,9 @@ import lombok.*;
 @Setter
 public class RespuestaRequest {
     private String texto;
-    private Integer puntuación;
-
+    private Integer puntuacion;
+    private Boolean correcta;
+    private Integer orden;
+    private String textoEnlazar;
+    private Long idPregunta;
 }

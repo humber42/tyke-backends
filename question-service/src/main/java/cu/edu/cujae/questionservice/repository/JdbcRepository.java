@@ -9,8 +9,6 @@ public interface JdbcRepository {
 
     int saveFeedback(FeedbackDto dto);
     int saveBonificacion(BonificacionPreguntaTiempoDto dto);
-    int savePistaPregunta(PistaPreguntaDto dto);
-    int savePreguntaRespuesta(PreguntaRespuestaDto dto);
     int savePista(PistaDto dto);
     int savePregunta(PreguntaDto dto);
     int saveProfileRespuesta(ProfileRespuestaPreguntaDto dto);

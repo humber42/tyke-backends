@@ -9,9 +9,9 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class BonificacionPreguntaTiempoDto {
-    private Long id;
+    private long id;
+    private Long idPregunta;
     private Long tiempoMenor;
     private Integer bonificacion;
-    private long idPregunta;
     private PreguntaDto preguntaByIdPregunta;
 }

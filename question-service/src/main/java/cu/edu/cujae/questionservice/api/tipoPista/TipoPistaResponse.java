@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class TipoPistaResponse {
-    private Long id;
+    private long id;
     private String tipo;
     private Integer puntosPista;
     private Integer puntosJuego;

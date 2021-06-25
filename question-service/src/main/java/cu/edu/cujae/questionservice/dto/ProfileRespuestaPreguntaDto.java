@@ -10,12 +10,12 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class ProfileRespuestaPreguntaDto {
-    private Long id;
-    private UserDto userDto;
-    private String username;
+    private long id;
+    private Long idRespuesta;
+    private Long idPregunta;
     private Integer tiempoSegundos;
-    private long idRespuesta;
-    private long idPregunta;
+    private String username;
     private RespuestaDto respuestaByIdRespuesta;
     private PreguntaDto preguntaByIdPregunta;
+    private UserDto userDto;
 }
