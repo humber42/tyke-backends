@@ -62,4 +62,12 @@ public class GrupoRestController {
                 .map(entity->mapper.map(entity, GrupoResponse.class))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping(value = WebResourceKeyConstants.GrupoUrls.GRUPO_GET_ALL_BY_PROFESOR_SIGNATURE,params = {"idProfesor","asignatura"})
+    public List<GrupoResponse> getAllProfesorSignaturesGroup(@RequestParam("idProfesor") int idProfesor,@RequestParam("asignatura")String asignatura){
+        return service.findAllGrupoBy(idProfesor,asignatura)
+                .stream()
+                .map(entity->mapper.map(entity, GrupoResponse.class))
+                .collect(Collectors.toList());
+    }
 }

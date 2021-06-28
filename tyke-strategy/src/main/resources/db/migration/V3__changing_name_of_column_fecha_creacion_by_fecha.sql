@@ -1,0 +1,1 @@
+alter table estrategia rename column "fecha_creacion " to fecha

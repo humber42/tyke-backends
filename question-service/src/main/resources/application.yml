@@ -4,7 +4,7 @@ spring:
   datasource:
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5433/tyke-questions
+    url: jdbc:postgresql://localhost:5432/tyke-questions
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
@@ -30,7 +30,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://192.168.137.1:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 management:
   endpoints:

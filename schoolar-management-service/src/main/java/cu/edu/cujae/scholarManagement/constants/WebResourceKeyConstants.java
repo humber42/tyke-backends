@@ -90,6 +90,7 @@ public class WebResourceKeyConstants {
         String GRUPO_SAVE = "/save";
         String GRUPO_UPDATE= "/update";
         String GRUPO_GET_ALLS_BY_CARRERA="/all/carrera";
+        String GRUPO_GET_ALL_BY_PROFESOR_SIGNATURE="/all/asignatura-profesor";
 
     }
     public interface ProfesorUrls{
@@ -99,6 +100,7 @@ public class WebResourceKeyConstants {
         String PROFESOR_SAVE="/save";
         String PROFESOR_UPDATE="/update";
         String PROFESOR_DELETE_BY_ID="/delete/id";
+        String PROFESOR_ASIGNATURA_BY_ID_USUARIO="/user/id";
         String PROFESOR_DELETE_BY_FULLNAME="/delete/fullname";
         String PROFESOR_DELETE_BY_EMAIL="/delete/email";
     }
@@ -120,6 +122,7 @@ public class WebResourceKeyConstants {
         String TEMA_SAVE="/save";
         String TEMA_DELETE_BY_ID="/delete/id";
         String TEMA_DELETE_BY_NAME="/delete/name";
+        String TEMA_BY_ASIGNATURA="/asignatura";
     }
 
     //Compositions

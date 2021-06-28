@@ -24,4 +24,8 @@ public class MicroservicesConstants {
         String FETCH_GRUPO_BY_ID ="/grupo/id";
     }
 
+    public interface ProfesorMicroserviceConstants{
+        String FETCH_PROFESOR_BY_ID="/profesor/id";
+    }
+
 }

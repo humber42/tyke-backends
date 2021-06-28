@@ -28,12 +28,12 @@ public class RegaloEntity {
 
     @Basic
     @Column(name = "descripcion")
-    public String getDescripción() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripción(String descripción) {
-        this.descripcion = descripción;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override

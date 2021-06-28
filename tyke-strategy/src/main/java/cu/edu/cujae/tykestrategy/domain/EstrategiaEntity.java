@@ -11,7 +11,7 @@ public class EstrategiaEntity {
     private long idEstrategia;
     private Integer puntos;
     private String nombre;
-    private Date fechaCreacion;
+    private Date fecha;
     private Long idProfesor;
     private Boolean habilitada;
     private Boolean evaluada;
@@ -19,6 +19,7 @@ public class EstrategiaEntity {
     private Collection<EstrategiaTemaEntity> temas;
     private Collection<JugadorDesafioEntity> desafios;
     private Collection<JugadorEstrategiaEntity> jugadores;
+    private Collection<EstrategiaPreguntaEntity> estrategiaPreguntasByIdEstrategia;
 
     @Id
     @Column(name = "id_estrategia")
@@ -52,13 +53,13 @@ public class EstrategiaEntity {
     }
 
     @Basic
-    @Column(name = "fecha_creacion ")
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    @Column(name = "fecha")
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     @Basic
@@ -99,7 +100,7 @@ public class EstrategiaEntity {
         return idEstrategia == that.idEstrategia &&
                 Objects.equals(puntos, that.puntos) &&
                 Objects.equals(nombre, that.nombre) &&
-                Objects.equals(fechaCreacion, that.fechaCreacion) &&
+                Objects.equals(fecha, that.fecha) &&
                 Objects.equals(idProfesor, that.idProfesor) &&
                 Objects.equals(habilitada, that.habilitada) &&
                 Objects.equals(evaluada, that.evaluada);
@@ -107,7 +108,7 @@ public class EstrategiaEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEstrategia, puntos, nombre, fechaCreacion, idProfesor, habilitada, evaluada);
+        return Objects.hash(idEstrategia, puntos, nombre, fecha, idProfesor, habilitada, evaluada);
     }
 
     @OneToMany(mappedBy = "estrategia")
@@ -144,5 +145,14 @@ public class EstrategiaEntity {
 
     public void setJugadores(Collection<JugadorEstrategiaEntity> jugadorEstrategiasByIdEstrategia) {
         this.jugadores = jugadorEstrategiasByIdEstrategia;
+    }
+
+    @OneToMany(mappedBy = "estrategiaByIdEstrategia")
+    public Collection<EstrategiaPreguntaEntity> getEstrategiaPreguntasByIdEstrategia() {
+        return estrategiaPreguntasByIdEstrategia;
+    }
+
+    public void setEstrategiaPreguntasByIdEstrategia(Collection<EstrategiaPreguntaEntity> estrategiaPreguntasByIdEstrategia) {
+        this.estrategiaPreguntasByIdEstrategia = estrategiaPreguntasByIdEstrategia;
     }
 }

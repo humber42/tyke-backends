@@ -12,7 +12,7 @@ import java.util.Collection;
 @EqualsAndHashCode
 @ToString
 public class TemaDto {
-    private int id;
+    private long id;
     private String nombre;
     private String desc;
     private Collection<Object> asignaturasTemasById;

@@ -7,6 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Builder
 public class TipoRegaloDto {
     private Long idTipoRegalo;
     private String nombre;

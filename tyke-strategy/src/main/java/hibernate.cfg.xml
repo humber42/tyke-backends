@@ -19,6 +19,7 @@
         <mapping class="cu.edu.cujae.tykestrategy.domain.RegaloEntity"/>
         <mapping class="cu.edu.cujae.tykestrategy.domain.RolProfesionalEntity"/>
         <mapping class="cu.edu.cujae.tykestrategy.domain.TipoRegaloEntity"/>
+        <mapping class="cu.edu.cujae.tykestrategy.domain.EstrategiaPreguntaEntity"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

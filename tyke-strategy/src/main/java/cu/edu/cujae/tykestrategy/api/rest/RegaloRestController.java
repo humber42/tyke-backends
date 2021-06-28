@@ -1,6 +1,7 @@
 package cu.edu.cujae.tykestrategy.api.rest;
 
 import cu.edu.cujae.tykestrategy.api.models.regalo.RegaloRequest;
+import cu.edu.cujae.tykestrategy.api.models.regalo.RegaloRequestWithId;
 import cu.edu.cujae.tykestrategy.api.models.regalo.RegaloResponse;
 import cu.edu.cujae.tykestrategy.constants.WebServiceResourceKeyConstants;
 import cu.edu.cujae.tykestrategy.dto.RegaloDto;
@@ -47,13 +48,15 @@ public class RegaloRestController {
 
     @PostMapping(WebServiceResourceKeyConstants.Endpoints.SAVE)
     public int saveRegalo(@RequestBody RegaloRequest request){
-        return service.saveRegalo(mapper.map(request, RegaloDto.class));
+
+        return service.saveRegalo(request);
 
     }
 
     @PostMapping(WebServiceResourceKeyConstants.Endpoints.UPDATE)
-    public RegaloResponse updateRegalo(@RequestBody RegaloResponse request){
-        return service.updateRegalo(mapper.map(request, RegaloDto.class))
+    public RegaloResponse updateRegalo(@RequestBody RegaloRequestWithId request){
+
+        return service.updateRegalo(request)
                 .map(entity->mapper.map(entity,RegaloResponse.class))
                 .get();
     }

@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class RegaloRequest {
-    private String idTipoRegalo;
-    private String idOtorgamiento;
-    private String descripcion;
+public class RegaloRequestWithId {
+
+        private String idTipoRegalo;
+        private String idOtorgamiento;
+        private String descripcion;
+        private long idRegalo;
 }

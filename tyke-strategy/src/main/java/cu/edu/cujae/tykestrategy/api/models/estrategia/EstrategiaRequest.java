@@ -14,7 +14,7 @@ import java.sql.Date;
 public class EstrategiaRequest {
     private Integer puntos;
     private String nombre;
-    private Date fechaCreacion;
+    private Date fecha;
     private Long idProfesor;
     private Boolean habilitada;
     private Boolean evaluada;

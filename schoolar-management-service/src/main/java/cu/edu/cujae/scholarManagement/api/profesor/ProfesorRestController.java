@@ -1,6 +1,7 @@
 package cu.edu.cujae.scholarManagement.api.profesor;
 
 import cu.edu.cujae.scholarManagement.constants.WebResourceKeyConstants;
+import cu.edu.cujae.scholarManagement.dto.ProfesorAsignaturas;
 import cu.edu.cujae.scholarManagement.dto.ProfesorDto;
 import cu.edu.cujae.scholarManagement.service.ProfesorService;
 import org.dozer.Mapper;
@@ -43,6 +44,11 @@ public class ProfesorRestController {
     @DeleteMapping(value = WebResourceKeyConstants.ProfesorUrls.PROFESOR_DELETE_BY_ID,params = "id")
     public ProfesorResponse deleteById(@RequestParam int id){
         return mapper.map(service.deleteById(id), ProfesorResponse.class);
+    }
+
+    @GetMapping(value = WebResourceKeyConstants.ProfesorUrls.PROFESOR_ASIGNATURA_BY_ID_USUARIO,params = "id")
+    public ProfesorAsignaturas getProfesorAsignaturasByIdUsuario(@RequestParam("id") int idUsuario){
+        return service.getProfesorAndSignatures(idUsuario);
     }
 
 

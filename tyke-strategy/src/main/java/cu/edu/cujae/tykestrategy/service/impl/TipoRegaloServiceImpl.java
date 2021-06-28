@@ -56,6 +56,11 @@ public class TipoRegaloServiceImpl implements TipoRegaloService {
         repository.deleteById(id);
     }
 
+    @Override
+    public Optional<TipoRegaloDto> getByName(String nombre) {
+        return repository.findByNombre(nombre).map(this::mapperDto);
+    }
+
     private TipoRegaloDto mapperDto(TipoRegaloEntity entity){
         return mapper.map(entity,TipoRegaloDto.class);
     }

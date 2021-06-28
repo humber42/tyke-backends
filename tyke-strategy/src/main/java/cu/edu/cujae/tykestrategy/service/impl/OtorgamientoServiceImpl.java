@@ -56,6 +56,11 @@ public class OtorgamientoServiceImpl implements OtorgamientoService {
         repository.deleteById(id);
     }
 
+    @Override
+    public Optional<OtorgamientoDto> getByName(String nombre) {
+        return repository.findByOtorgamiento(nombre).map(this::mapperDto);
+    }
+
     private OtorgamientoDto mapperDto(OtorgamientoEntity entity){
         return mapper.map(entity, OtorgamientoDto.class);
     }

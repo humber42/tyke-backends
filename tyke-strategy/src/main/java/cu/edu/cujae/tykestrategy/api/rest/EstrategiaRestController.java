@@ -1,6 +1,7 @@
 package cu.edu.cujae.tykestrategy.api.rest;
 
 import cu.edu.cujae.tykestrategy.api.models.estrategia.EstrategiaRequest;
+import cu.edu.cujae.tykestrategy.api.models.estrategia.EstrategiaRequestWithAllThings;
 import cu.edu.cujae.tykestrategy.api.models.estrategia.EstrategiaResponse;
 import cu.edu.cujae.tykestrategy.constants.WebServiceResourceKeyConstants;
 import cu.edu.cujae.tykestrategy.dto.EstrategiaDto;
@@ -57,5 +58,10 @@ public class EstrategiaRestController {
         )
                 .map(entity->mapper.map(entity,EstrategiaResponse.class))
                 .get();
+    }
+
+    @PostMapping(WebServiceResourceKeyConstants.Endpoints.SAVE_STRATEGY_SPECIAL_ENDPOINT)
+    public int saveStrategyWithAll(@RequestBody EstrategiaRequestWithAllThings request){
+        return service.saveEstrategiaComplete(request);
     }
 }

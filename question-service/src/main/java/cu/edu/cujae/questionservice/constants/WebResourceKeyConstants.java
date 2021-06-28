@@ -42,6 +42,7 @@ public class WebResourceKeyConstants {
         String PREGUNTA_SAVE = "/save";
         String PREGUNTA_UPDATE = "/update";
         String PREGUNTA_SAVE_COMPLETE="/save/complete";
+        String PREGUNTA_ALL_BY_SIGNATURE="/all/signature";
     }
 
     public interface ProfileRespuestaPreguntaUrls {

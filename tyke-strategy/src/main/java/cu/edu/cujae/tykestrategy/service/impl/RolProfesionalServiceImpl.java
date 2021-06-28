@@ -2,6 +2,7 @@ package cu.edu.cujae.tykestrategy.service.impl;
 
 import cu.edu.cujae.tykestrategy.domain.RolProfesionalEntity;
 import cu.edu.cujae.tykestrategy.dto.RolProfesionalDto;
+import cu.edu.cujae.tykestrategy.feignInterface.SchoolarInterface;
 import cu.edu.cujae.tykestrategy.repository.RolProfesionalRepository;
 import cu.edu.cujae.tykestrategy.service.RolProfesionalService;
 import org.dozer.Mapper;
@@ -19,6 +20,8 @@ public class RolProfesionalServiceImpl implements RolProfesionalService {
     Mapper mapper;
     @Autowired
     RolProfesionalRepository repository;
+    @Autowired
+    SchoolarInterface schoolarInterface;
 
 
     @Override
@@ -58,7 +61,11 @@ public class RolProfesionalServiceImpl implements RolProfesionalService {
     }
 
     private RolProfesionalDto mapperDto(RolProfesionalEntity entity){
-        return mapper.map(entity,RolProfesionalDto.class);
+        RolProfesionalDto dto =  mapper.map(entity,RolProfesionalDto.class);
+        dto.setCarrera(schoolarInterface.searchCarreraById(entity.getIdCarrera().intValue()));
+        dto.setTema(schoolarInterface.seatchTemaById(entity.getIdTema().intValue()));
+        return dto;
+
     }
 }
 

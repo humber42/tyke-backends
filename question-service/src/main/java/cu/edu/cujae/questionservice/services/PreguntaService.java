@@ -15,5 +15,6 @@ public interface PreguntaService {
     PreguntaDto updatePregunta(PreguntaDto dto);
     PreguntaDto deletePregunta(long id);
     PreguntaDto savePreguntaWithCluesAndBonifications(PreguntaRequestWithRespuestasCluesBonifications request);
+    List<PreguntaDto> getAllPreguntaByAsignatura(String asignatura);
 
 }

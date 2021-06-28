@@ -73,4 +73,12 @@ public class TemaRestController {
         return mapper.map(service.deleteTemaByNombre(name), TemaResponse.class);
     }
 
+    @GetMapping(value = WebResourceKeyConstants.TemaUrls.TEMA_BY_ASIGNATURA,params = "asignatura")
+    public List<TemaResponse> getAllTemasByAsignatura(@RequestParam("asignatura") String asignatura){
+        return service.getAllTemasByAsignatura(asignatura)
+                .stream()
+                .map(dto->mapper.map(dto,TemaResponse.class))
+                .collect(Collectors.toList());
+    }
+
 }

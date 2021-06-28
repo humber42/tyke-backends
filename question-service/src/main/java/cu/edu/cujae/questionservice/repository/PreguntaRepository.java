@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PreguntaRepository extends JpaRepository<PreguntaEntity,Long> {
-
+        List<PreguntaEntity> findAllByAsignatura(String asignatura);
 }

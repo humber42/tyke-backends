@@ -12,4 +12,5 @@ public interface TipoRegaloService {
     Optional<TipoRegaloDto> updateTipoRegalo(TipoRegaloDto dto);
     void deleteTipoRegaloById(long id);
     void deleteTipoRegalo(TipoRegaloDto dto);
+    Optional<TipoRegaloDto> getByName(String nombre);
 }

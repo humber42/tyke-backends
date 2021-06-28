@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 public class OtorgamientoDto {
     private long idOtorgamiento;
     private Integer cantPuntos;

@@ -85,13 +85,13 @@ public class JdbcSaveRepositoryImpl implements JdbcSaveRepository {
         MapSqlParameterSource source = new MapSqlParameterSource();
         source.addValue("puntos",dto.getPuntos());
         source.addValue("nombre",dto.getNombre());
-        source.addValue("fecha_creacion",dto.getFechaCreacion());
+        source.addValue("fecha",dto.getFecha());
         source.addValue("id_profesor",dto.getIdProfesor());
         source.addValue("habilitada",dto.getHabilitada());
         source.addValue("evaluada",dto.getEvaluada());
 
-        return template.update("INSERT INTO \"estrategia\"(puntos, nombre, fecha_creacion , id_profesor, habilitada, evaluada) " +
-                "VALUES(:puntos,:nombre,:fecha_creacion,:id_profesor,:habilitada,:evaluada)"
+        return template.update("INSERT INTO \"estrategia\"(puntos, nombre, fecha , id_profesor, habilitada, evaluada) " +
+                "VALUES(:puntos,:nombre,:fecha,:id_profesor,:habilitada,:evaluada)"
                 ,source);
     }
 
@@ -99,7 +99,7 @@ public class JdbcSaveRepositoryImpl implements JdbcSaveRepository {
     public int saveStrategyGrupo(EstrategiaGrupoDto dto) {
        MapSqlParameterSource source = new MapSqlParameterSource();
        source.addValue("id_estrategia",dto.getIdEstrategia());
-       source.addValue("id_grupo",dto.getGrupo());
+       source.addValue("id_grupo",dto.getIdGrupo());
 
        return template.update("INSERT into \"estrategia_grupo\"(id_estrategia, id_grupo) " +
                        "VALUES(:id_estrategia,:id_grupo)"

@@ -11,18 +11,20 @@ import java.util.Collection;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 public class EstrategiaDto {
     private long idEstrategia;
     private Integer puntos;
     private String nombre;
-    private Date fechaCreacion;
+    private Date fecha;
     private Long idProfesor;
-    private UserDto profesor;
+    private ProfesorDto profesor;
     private Boolean habilitada;
     private Boolean evaluada;
     private Collection<EstrategiaGrupoDto> grupos;
     private Collection<EstrategiaTemaDto> temas;
     private Collection<JugadorDesafioDto> desafios;
     private Collection<JugadorEstrategiaDto> jugadores;
+    private Collection<EstrategiaPreguntaDto> estrategiaPreguntasByIdEstrategia;
 
 }

@@ -236,6 +236,19 @@ public class PreguntaServiceImpl implements PreguntaService {
         return 0;
    }
 
+    @Override
+    public List<PreguntaDto> getAllPreguntaByAsignatura(String asignatura) {
+        return repository.findAllByAsignatura(asignatura)
+                .stream()
+                .map(this::mappearAsignatura)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * This method make a mapping for every @class PreguntaEntity
+     * @param entity PreguntaEntity
+     * @return PreguntaDto
+     */
     private PreguntaDto mappearAsignatura(PreguntaEntity entity) {
         PreguntaDto dto = mapper.map(entity, PreguntaDto.class);
         dto.setBonificacionPreguntaTiemposById(bonificacionPreguntaTiempoService

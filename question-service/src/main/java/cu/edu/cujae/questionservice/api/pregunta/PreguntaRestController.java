@@ -25,6 +25,16 @@ public class PreguntaRestController {
         return service.getAllPreguntas().stream().map(this::convertir).collect(Collectors.toList());
     }
 
+    @GetMapping(value = WebResourceKeyConstants.PreguntaUrls.PREGUNTA_ALL_BY_SIGNATURE,params = "asignatura")
+    public List<PreguntaResponse> getAllPreguntaBySignature(@RequestParam("asignatura")String asignatura){
+        return service.getAllPreguntaByAsignatura(asignatura)
+                .stream()
+                .map(this::convertir)
+                .collect(Collectors.toList());
+    }
+
+
+
 //    @GetMapping(value = WebResourceKeyConstants.PreguntaUrls.PREGUNTA_GET_BY_TYPE, params = "type")
 //    public List<PreguntaResponse> getAllPreguntasByType(@RequestParam String type) {
 //        return service.getAllPreguntasByTipo(type).stream().map(this::convertir).collect(Collectors.toList());

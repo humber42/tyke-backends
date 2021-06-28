@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Builder
 public class RegaloDto {
     private long idRegalo;
     private long idTipoRegalo;

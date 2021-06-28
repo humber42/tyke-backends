@@ -3,8 +3,7 @@ package cu.edu.cujae.scholarManagement.service.impl;
 import cu.edu.cujae.scholarManagement.api.profesor.ProfesorRequest;
 import cu.edu.cujae.scholarManagement.api.profesor.ProfesorRequestToUpdate;
 import cu.edu.cujae.scholarManagement.domain.ProfesorEntity;
-import cu.edu.cujae.scholarManagement.dto.ProfesorDto;
-import cu.edu.cujae.scholarManagement.dto.UsuarioDto;
+import cu.edu.cujae.scholarManagement.dto.*;
 import cu.edu.cujae.scholarManagement.feignInterface.UserInterface;
 import cu.edu.cujae.scholarManagement.repository.JdbcRepository;
 import cu.edu.cujae.scholarManagement.repository.ProfesorRepository;
@@ -14,6 +13,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,5 +78,20 @@ public class ProfesorServiceImpl implements ProfesorService {
         ProfesorDto profesorDto = mapper.map(entity, ProfesorDto.class);
         profesorDto.setUsuario(dto);
         return profesorDto;
+    }
+
+
+    @Override
+    public ProfesorAsignaturas getProfesorAndSignatures(int idUsuario) {
+        //Se recupera el profesor
+        ProfesorDto profesorDto = repository.findByIdUsuario(idUsuario).map(this::mappear).get();
+        //Se obtiene la lista de los nombres de las asignaturas
+        LinkedList<String> asignaturas = profesorDto.getAsignaturaProfesorGruposById().stream()
+                .map(AsignaturaProfesorGrupoDto::getAsignaturaByIdAsignatura)
+                .map(AsignaturaDto::getNombre).collect(Collectors.toCollection(LinkedList::new));
+
+        return ProfesorAsignaturas.builder()
+                .idProfesor(profesorDto.getId())
+                .asignaturas(asignaturas).build();
     }
 }

@@ -1,11 +1,13 @@
 package cu.edu.cujae.scholarManagement.service.impl;
 
+import com.netflix.discovery.converters.Auto;
 import cu.edu.cujae.scholarManagement.api.estudiante.EstudianteResponse;
 import cu.edu.cujae.scholarManagement.api.grupo.GrupoRequest;
 import cu.edu.cujae.scholarManagement.domain.GrupoEntity;
 import cu.edu.cujae.scholarManagement.dto.AsignaturaProfesorGrupoDto;
 import cu.edu.cujae.scholarManagement.dto.EstudianteGrupoDto;
 import cu.edu.cujae.scholarManagement.dto.GrupoDto;
+import cu.edu.cujae.scholarManagement.dto.GrupoToStrategy;
 import cu.edu.cujae.scholarManagement.repository.GrupoRepository;
 import cu.edu.cujae.scholarManagement.service.*;
 import org.dozer.Mapper;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +34,8 @@ public class GrupoServiceImpl implements GrupoService {
     CarreraService carreraService;
     @Autowired
     ProfesorService profesorService;
+    @Autowired
+    AsignaturaService asignaturaService;
 
 
     @Override
@@ -114,4 +119,19 @@ public class GrupoServiceImpl implements GrupoService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<GrupoDto> findAllGrupoBy(int idProfesor, String asignatura) {
+        return repository.findAll().stream()
+                .map(grupoEntity -> mapper.map(grupoEntity,GrupoDto.class))
+                .filter(grupo->{
+                    boolean isAsignaturaProfesorTrue=false;
+                    for (AsignaturaProfesorGrupoDto dto : grupo.getAsignaturaProfesorGruposById()){
+                        if (dto.getAsignaturaByIdAsignatura().getNombre().equalsIgnoreCase(asignatura)
+                                && dto.getIdProfesor()==idProfesor){
+                            isAsignaturaProfesorTrue=true;
+                        }
+                    }
+                    return isAsignaturaProfesorTrue;
+                }).collect(Collectors.toList());
+    }
 }

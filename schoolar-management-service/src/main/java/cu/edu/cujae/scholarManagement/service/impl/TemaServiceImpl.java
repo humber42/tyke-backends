@@ -1,6 +1,7 @@
 package cu.edu.cujae.scholarManagement.service.impl;
 
 import cu.edu.cujae.scholarManagement.domain.TemaEntity;
+import cu.edu.cujae.scholarManagement.dto.AsignaturaTemaDto;
 import cu.edu.cujae.scholarManagement.dto.TemaDto;
 import cu.edu.cujae.scholarManagement.repository.TemaRepository;
 import cu.edu.cujae.scholarManagement.service.TemaService;
@@ -54,6 +55,23 @@ public class TemaServiceImpl implements TemaService {
         entity.setNombre(dto.getNombre());
         entity.setDescription(dto.getDescription());
         return mapper.map(repository.save(entity), TemaDto.class);
+    }
+
+    @Override
+    public List<TemaDto> getAllTemasByAsignatura(String asignatura) {
+        return repository.findAll()
+                .stream()
+                .map(entity->mapper.map(entity, TemaDto.class))
+                .filter(tema->{
+                    boolean isFromSignature = false;
+                    for(AsignaturaTemaDto asignaturaTemaDto: tema.getAsignaturaTemasById()){
+                        if(asignaturaTemaDto.getAsignaturaByIdAsignatura().getNombre().equalsIgnoreCase(asignatura)){
+                            isFromSignature=true;
+                        }
+                    }
+                    return isFromSignature;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override

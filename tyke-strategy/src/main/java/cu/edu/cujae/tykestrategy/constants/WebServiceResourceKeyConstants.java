@@ -23,6 +23,7 @@ public class WebServiceResourceKeyConstants {
         String SAVE = "/save";
         String DELETE = "/delete";
         String DELETE_BY_ID ="/delete/id";
+        String SAVE_STRATEGY_SPECIAL_ENDPOINT="/save/all";
     }
 
 }

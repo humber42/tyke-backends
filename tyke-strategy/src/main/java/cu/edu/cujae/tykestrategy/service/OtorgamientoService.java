@@ -1,5 +1,6 @@
 package cu.edu.cujae.tykestrategy.service;
 
+import cu.edu.cujae.tykestrategy.domain.OtorgamientoEntity;
 import cu.edu.cujae.tykestrategy.dto.OtorgamientoDto;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface OtorgamientoService {
     Optional<OtorgamientoDto> updateOtorgamiento(OtorgamientoDto dto);
     void deleteOtorgamientoById(long id);
     void deleteOtorgamiento(OtorgamientoDto dto);
+    Optional<OtorgamientoDto> getByName(String nombre);
 }

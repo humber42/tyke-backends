@@ -1,5 +1,6 @@
 package cu.edu.cujae.tykestrategy.service;
 
+import cu.edu.cujae.tykestrategy.api.models.estrategia.EstrategiaRequestWithAllThings;
 import cu.edu.cujae.tykestrategy.dto.EstrategiaDto;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface EstrategiaService {
     Optional<EstrategiaDto> updateEstrategiaDto(EstrategiaDto dto);
     void deleteEstrategiaById(long id);
     void deleteEstrategia(EstrategiaDto dto);
+    int saveEstrategiaComplete(EstrategiaRequestWithAllThings estrategiaRequest);
 }

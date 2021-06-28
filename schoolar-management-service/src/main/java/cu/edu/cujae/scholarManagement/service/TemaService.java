@@ -13,4 +13,5 @@ public interface TemaService {
     TemaDto updateTema(TemaDto dto);
     TemaDto deleteTemaById(int id);
     TemaDto deleteTemaByNombre(String nombre);
+    List<TemaDto> getAllTemasByAsignatura(String asignatura);
 }
