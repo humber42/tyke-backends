@@ -24,6 +24,7 @@ public class UserResponse {
     private List<Role> roles;
     private Integer loginAttempt;
     private String status;
-    private int profile_id;
+
+    private String image_url;
 
 }

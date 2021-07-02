@@ -46,7 +46,8 @@ public class UserRepositoryImpl implements UserRepository {
                                 rs.getString("lang"),
                                 rs.getString("status"),
                                 rs.getInt("login_attempts"),
-                                rs.getInt("profile_id")
+                                rs.getInt("profile_id"),
+                                rs.getString("image_url")
                         ))
         );
     }
@@ -88,10 +89,11 @@ public class UserRepositoryImpl implements UserRepository {
         mapSqlParameterSource.addValue("gender", user.getGender());
         mapSqlParameterSource.addValue("lang", user.getLang());
         mapSqlParameterSource.addValue("status","A");
+        mapSqlParameterSource.addValue("image_url",user.getImage_url());
 
         return namedParameterJdbcTemplate.update(
-                "INSERT INTO \"user\" (username, fullname, email, password, dob, gender, lang,status) "
-                        + "VALUES (:username, :fullname, :email, :password, :dob, :gender, :lang,:status)",
+                "INSERT INTO \"user\" (username, fullname, email, password, dob, gender, lang,status,image_url) "
+                        + "VALUES (:username, :fullname, :email, :password, :dob, :gender, :lang,:status,:image_url)",
                 mapSqlParameterSource);
     }
 
@@ -112,11 +114,12 @@ public class UserRepositoryImpl implements UserRepository {
         mapSqlParameterSource.addValue("lang", user.getLang());
         mapSqlParameterSource.addValue("status", user.getStatus());
         mapSqlParameterSource.addValue("login_attempt", user.getLoginAttempt());
+        mapSqlParameterSource.addValue("image_url",user.getImage_url());
 
         //updating
         return namedParameterJdbcTemplate.update(
                 "UPDATE \"user\" SET username = :username, fullname = :fullname, email = :email, password = :password, "
-                        + "dob = :dob, gender = :gender, lang = :lang, status = :status, login_attempts = :login_attempt "
+                        + "dob = :dob, gender = :gender, lang = :lang, status = :status, login_attempts = :login_attempt, image_url=:image_url "
                         + "WHERE id = :id",
                 mapSqlParameterSource);
     }
@@ -145,7 +148,8 @@ public class UserRepositoryImpl implements UserRepository {
                                 rs.getString("lang"),
                                 rs.getString("status"),
                                 rs.getInt("login_attempts"),
-                                rs.getInt("profile_id")
+                                rs.getInt("profile_id"),
+                                rs.getString("image_url")
                         )
         );
     }
@@ -173,7 +177,8 @@ public class UserRepositoryImpl implements UserRepository {
                                 rs.getString("lang"),
                                 rs.getString("status"),
                                 rs.getInt("login_attempts"),
-                                rs.getInt("profile_id")
+                                rs.getInt("profile_id"),
+                                rs.getString("image_url")
                         )
         );
     }
@@ -197,7 +202,8 @@ public class UserRepositoryImpl implements UserRepository {
                                     rs.getString("lang"),
                                     rs.getString("status"),
                                     rs.getInt("login_attempts"),
-                                    rs.getInt("profile_id")
+                                    rs.getInt("profile_id"),
+                                    rs.getString("image_url")
                             )
             );
         } catch (EmptyResultDataAccessException e) {
@@ -224,7 +230,8 @@ public class UserRepositoryImpl implements UserRepository {
                                 rs.getString("lang"),
                                 rs.getString("status"),
                                 rs.getInt("login_attempts"),
-                                rs.getInt("profile_id")
+                                rs.getInt("profile_id"),
+                                rs.getString("image_url")
                         )
         );
     } catch (EmptyResultDataAccessException e) {

@@ -20,6 +20,7 @@ public class UserRequest {
     private Date dob;
     private String gender;
     private String lang;
+    private String image_url;
     private List<Role> roles;
 
 }

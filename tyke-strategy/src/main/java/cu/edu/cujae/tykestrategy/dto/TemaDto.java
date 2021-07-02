@@ -14,6 +14,4 @@ import java.util.Collection;
 public class TemaDto {
     private long id;
     private String nombre;
-    private String desc;
-    private Collection<Object> asignaturasTemasById;
 }

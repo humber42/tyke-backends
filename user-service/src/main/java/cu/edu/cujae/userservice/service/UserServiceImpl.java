@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService {
         userDomain.setFullname(user.getFullname());
         userDomain.setUsername(user.getUsername());
         userDomain.setPassword(user.getPassword());
+        userDomain.setImage_url(user.getImage_url());
         int valorRetorno=userRepository.save(userDomain);
         Long idUser = findByUsername(user.getUsername()).getId();
         for(int i =0;i<user.getRoles().size();i++){

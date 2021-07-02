@@ -25,12 +25,13 @@ public class User {
     private Integer loginAttempt;
     private String  status;
     private int id_profile;
+    private String image_url;
 
     private List<String> rolesSelected;
     private String passwordConfirm;
     private String passwordNew;
 
-    public User(Long id,String username,String fullname,String email,String password,Date dob,String gender,String lang,String status,Integer loginAttempt,int profile_id){
+    public User(Long id,String username,String fullname,String email,String password,Date dob,String gender,String lang,String status,Integer loginAttempt,int profile_id,String image_url){
         this.id =id;
         this.username = username;
         this.fullname = fullname;
@@ -45,10 +46,19 @@ public class User {
         this.status = status;
         this.loginAttempt = loginAttempt;
         this.id_profile = profile_id;
+        this.image_url = image_url;
     }
 
-    public User(Long id,String username,String fullname,String email,List<Role>roles,String password,Date dob,String gender,String lang,String status,Integer loginAttempt,int profile_id){
-        this(id,username,fullname,email,password,dob,gender,lang,status,loginAttempt,profile_id);
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public User(Long id, String username, String fullname, String email, List<Role>roles, String password, Date dob, String gender, String lang, String status, Integer loginAttempt, int profile_id, String image_url){
+        this(id,username,fullname,email,password,dob,gender,lang,status,loginAttempt,profile_id,image_url);
         this.roles = roles;
     }
 

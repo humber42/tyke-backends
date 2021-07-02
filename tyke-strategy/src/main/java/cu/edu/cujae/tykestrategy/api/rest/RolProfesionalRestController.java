@@ -21,11 +21,8 @@ public class RolProfesionalRestController {
     Mapper mapper;
 
     @GetMapping(WebServiceResourceKeyConstants.Endpoints.GET_ALL)
-    public List<RolProfessionalResponse> getAllRolProfesional(){
-        return service.findAllRolProfesional()
-                .stream()
-                .map(entity->mapper.map(entity, RolProfessionalResponse.class))
-                .collect(Collectors.toList());
+    public List<RolProfesionalDto> getAllRolProfesional(){
+        return service.findAllRolProfesional();
     }
 
     @GetMapping(value = WebServiceResourceKeyConstants.Endpoints.GET_BY_ID, params = "id")
@@ -46,9 +43,8 @@ public class RolProfesionalRestController {
     }
 
     @PostMapping(WebServiceResourceKeyConstants.Endpoints.SAVE)
-    public RolProfessionalResponse saveRolProfesional(@RequestBody RolProfesionalRequest request){
+    public RolProfesionalDto saveRolProfesional(@RequestBody RolProfesionalRequest request){
         return service.saveRolProfesional(mapper.map(request, RolProfesionalDto.class))
-                .map(entity->mapper.map(entity, RolProfessionalResponse.class))
                 .get();
     }
 

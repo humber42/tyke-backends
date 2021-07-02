@@ -1,0 +1,1 @@
+ALTER TABLE public."user" ADD image_url varchar(255) NULL;
